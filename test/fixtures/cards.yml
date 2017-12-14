@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  api_rf: MyString
+  name: MyString
+  mana_cost: MyString
+  card_type: MyString
+  image_url: MyString
+
+two:
+  api_rf: MyString
+  name: MyString
+  mana_cost: MyString
+  card_type: MyString
+  image_url: MyString
