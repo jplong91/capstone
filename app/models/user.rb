@@ -1,5 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
+  validates :first_name, :last_name, presence: true
+  validates :display_name, :email, presence: true, uniqueness: true
+  
   has_many :team_users
   has_many :teams, through: :team_users
   has_many :decks

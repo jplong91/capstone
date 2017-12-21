@@ -46,15 +46,24 @@ class Frontend
     params[:name] = gets.chomp
     print "Please enter a deck description: "
     params[:description] = gets.chomp
+    print "User ID: "
+    params[:user_id] = gets.chomp.to_i
     response = Unirest.post("#{$base_url}/decks", parameters: params)
-    deck = response.body
-    if book["errors"]
+    @deck = response.body
+    if @deck["errors"]
       puts "\nDID NOT SAVE. INVALID ENTRY:"
-      puts deck["errors"]
+      puts @deck["errors"]
     else
       puts "\nYou've added a deck!"
       sleep 0.75
-      puts deck
+      add_cards_to_deck
+    end
+  end
+
+  def add_cards_to_deck
+    while true
+      puts "\n@------ Add a card to your deck ------@"
+      card_search
     end
   end
 
@@ -63,10 +72,12 @@ class Frontend
     input_card_name = gets.chomp
     response = Unirest.get("https://api.magicthegathering.io/v1/cards?name=#{input_card_name}")
     cards = response.body
-    puts cards["cards"][0]["name"]
-    puts cards["cards"][0]["manaCost"]
-    puts cards["cards"][0]["type"]
-    puts cards["cards"][0]["imageUrl"]
+    @card = cards["cards"][0]
+    puts
+    puts @card["name"]
+    puts @card["manaCost"]
+    puts @card["type"]
+    puts @card["imageUrl"]
   end
 
   def quit
