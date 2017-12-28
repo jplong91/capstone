@@ -40,6 +40,49 @@ class Frontend
     end
   end
 
+  def card_search
+    print "\nPlease enter the name of a card you'd like to search for: "
+    input_card_name = gets.chomp
+    response = Unirest.get("https://api.magicthegathering.io/v1/cards?name=#{input_card_name}")
+    cards = response.body
+    @card = cards["cards"][0]
+    puts
+    puts @card["name"]
+    puts @card["manaCost"]
+    puts @card["type"]
+    puts @card["imageUrl"]
+  end
+
+  def add_cards_to_deck
+    while true
+      puts @deck
+      puts "\n@------ Add a card to your deck ------@"
+      card_search
+      print "\nAdd this card to your deck? "
+      input_yn = gets.chomp
+      if input_yn.downcase == "y"
+        print "Quantity: "
+        input_quantity = gets.chomp.to_i
+        params = {
+          api_rf: @card["id"],
+          name: @card["name"],
+          mana_cost: @card["manaCost"],
+          card_type: @card["type"],
+          image_url: @card["imageUrl"],
+          deck_id: @deck["id"],
+          quantity: input_quantity
+        }
+        response = Unirest.post("#{$base_url}/cards", parameters: params)
+        puts response.body
+      end
+      print "Type 'complete' if your deck is finished, return to continue adding cards: "
+      input_complete_deck = gets.chomp
+      if input_complete_deck == "complete"
+        break
+      end
+    end
+  end
+
   def create_deck
     params = {}
     print "Please enter a deck name: "
@@ -58,26 +101,6 @@ class Frontend
       sleep 0.75
       add_cards_to_deck
     end
-  end
-
-  def add_cards_to_deck
-    while true
-      puts "\n@------ Add a card to your deck ------@"
-      card_search
-    end
-  end
-
-  def card_search
-    print "\nPlease enter the name of a card you'd like to search for: "
-    input_card_name = gets.chomp
-    response = Unirest.get("https://api.magicthegathering.io/v1/cards?name=#{input_card_name}")
-    cards = response.body
-    @card = cards["cards"][0]
-    puts
-    puts @card["name"]
-    puts @card["manaCost"]
-    puts @card["type"]
-    puts @card["imageUrl"]
   end
 
   def quit

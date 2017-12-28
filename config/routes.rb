@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     post "/decks" => "decks#create"
 
     get "/cards" => "cards#index"
+    post "/cards" => "cards#create"
 
     get "/teams" => "teams#index"
   end
