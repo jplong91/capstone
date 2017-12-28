@@ -50,6 +50,7 @@ class Frontend
     puts @card["name"]
     puts @card["manaCost"]
     puts @card["type"]
+    puts @card["set"]
     puts @card["imageUrl"]
   end
 
@@ -67,7 +68,9 @@ class Frontend
           api_rf: @card["id"],
           name: @card["name"],
           mana_cost: @card["manaCost"],
+          cmc: @card["cmc"],
           card_type: @card["type"],
+          set: @card["set"],
           image_url: @card["imageUrl"],
           deck_id: @deck["id"],
           quantity: input_quantity

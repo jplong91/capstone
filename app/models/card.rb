@@ -8,7 +8,9 @@ class Card < ApplicationRecord
       api_rf: self.api_rf,
       name: self.name,
       mana_cost: self.mana_cost,
+      cmc: self.cmc,
       card_type: self.card_type,
+      set: self.set,
       image_url: self.image_url
     }
   end

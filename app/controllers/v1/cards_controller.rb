@@ -6,14 +6,22 @@ class V1::CardsController < ApplicationController
   end
 
   def create
-    card = Card.new(
-      api_rf: params[:api_rf],
-      name: params[:name],
-      mana_cost: params[:mana_cost],
-      card_type: params[:card_type],
-      image_url: params[:image_url]
-    )
-    if card.save
+    found_card = false
+    if Card.find_by(name: params[:name])
+      card = Card.find_by(name: params[:name])
+      found_card = true
+    else
+      card = Card.new(
+        api_rf: params[:api_rf],
+        name: params[:name],
+        mana_cost: params[:mana_cost],
+        cmc: params[:cmc],
+        card_type: params[:card_type],
+        set: params[:set],
+        image_url: params[:image_url]
+      )
+    end
+    if found_card || card.save
       deck_card = DeckCard.new(
         deck_id: params[:deck_id],
         card_id: card.id,
