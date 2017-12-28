@@ -5,10 +5,12 @@ Rails.application.routes.draw do
 
     get "/decks" => "decks#index"
     post "/decks" => "decks#create"
+    delete "/decks/:id" => "decks#destroy"
 
     get "/cards" => "cards#index"
     post "/cards" => "cards#create"
 
     get "/teams" => "teams#index"
+    post "/teams" => "teams#create"
   end
 end

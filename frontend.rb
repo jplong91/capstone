@@ -26,6 +26,7 @@ class Frontend
       "View all Decks" => -> do view_all_decks end,
       "Create a Deck" => -> do create_deck end,
       "Search for a card" => -> do card_search end,
+      "Delete deck" => -> do delete_deck end,
       "Exit" => -> do quit end
     }
   end
@@ -103,6 +104,20 @@ class Frontend
       puts "\nYou've added a deck!"
       sleep 0.75
       add_cards_to_deck
+    end
+  end
+
+  def delete_deck
+    print "Enter the deck id to be deleted: "
+    deck_id = gets.chomp.to_i
+    response = Unirest.delete("#{$base_url}/decks/#{deck_id}")
+    deck = response.body
+    if deck["errors"]
+      puts "\nDID NOT SAVE. INVALID ENTRY:"
+      puts deck["errors"]
+    else 
+      puts "\nDeck deleted."
+      sleep 0.5
     end
   end
 

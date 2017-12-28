@@ -23,4 +23,16 @@ class V1::DecksController < ApplicationController
     end
   end
 
+  def destroy
+    deck_id = params["id"]
+    deck = Deck.find_by(id: deck_id)
+    if deck.destroy
+      cards = DeckCard.where(deck_id: deck_id)
+      cards.each do |card|
+        card.destroy
+      end
+      render json: "Deck successfully deleted"
+    end
+  end
+
 end
