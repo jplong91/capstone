@@ -12,8 +12,23 @@ var HomePage = {
   computed: {}
 };
 
+var DecksPage = {
+  template: "#decks-page",
+  data: function() {
+    return {
+      message: "Welcome to Vue.js!"
+    };
+  },
+  mounted: function() {},
+  methods: {},
+  computed: {}
+};
+
 var router = new VueRouter({
-  routes: [{ path: "/", component: HomePage }]
+  routes: [
+    { path: "/", component: HomePage },
+    { path: "/decks", component: DecksPage }
+  ]
 });
 
 var app = new Vue({

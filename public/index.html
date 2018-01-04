@@ -44,6 +44,15 @@
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/ie_fix.css">
 
+
+<!-- VUE JS -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.js"></script>
+    <script src="index.js" defer></script>
+<!-- /VUE JS -->
+
+
     <script src="assets/lib/components-modernizr/modernizr.js"></script>
     <script src="assets/lib/jquery/dist/jquery.js"></script>
     <script src="assets/lib/bootstrap/dist/js/bootstrap.js"></script>
@@ -52,693 +61,201 @@
 
 <body data-spy="scroll" data-target="#main-nav-collapse" data-offset="100">
 
+
 <div class="page-loader">
     <div class="loader">Loading...</div>
 </div>
 <!-- Fixed Top Navigation -->
 <nav id="fixedTopNav" class="navbar navbar-fixed-top main-navigation" itemscope itemtype="https://schema.org/SiteNavigationElement" >
-    <div class="container">
+<div class="container">
 
-        <div class="navbar-header">
+<div class="navbar-header">
 
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="ion-drag"></span>
-            </button>
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="ion-drag"></span>
+    </button>
 
-            <!-- Logo -->
-            <div class="navbar-brand" itemscope itemtype="https://schema.org/Organization">
-                <span itemprop="name" class="sr-only">MTG Hydra</span>
-                <a itemprop="url" href="index.html">
-                    MTG<em>!</em>Hydra
-                </a>
-            </div>
-            <!-- /Logo -->
+    <!-- Logo -->
+    <div class="navbar-brand" itemscope itemtype="https://schema.org/Organization">
+        <span itemprop="name" class="sr-only">MTG Hydra</span>
+        <a itemprop="url" href="/#/">
+            MTG<em>|</em>Hydra
+        </a>
+    </div>
+    <!-- /Logo -->
 
-        </div><!-- /.navbar-header -->
+</div><!-- /.navbar-header -->
 
-        <!-- Navigation Links -->
-        <div class="collapse navbar-collapse" id="main-nav-collapse">
-            <ul class="nav navbar-nav navbar-right" role="menu">
+<!-- Navigation Links -->
+<div class="collapse navbar-collapse" id="main-nav-collapse">
+    <ul class="nav navbar-nav navbar-right" role="menu">
+
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Home</span></a>
+            <ul class="dropdown-menu">
 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Home</span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">One Page</a>
                     <ul class="dropdown-menu">
-
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">One Page</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="index__op__image_full_screen.html">Image Full Screen</a></li>
-                                <li><a href="index__op__image_classic.html">Image Classic</a></li>
-                                <li><a href="index__op__slider_full_screen.html">Slider Full Screen</a></li>
-                                <li><a href="index__op__slider_classic.html">Slider Classic</a></li>
-                                <li><a href="index__op__text_rotator_full_screen.html">Text Rotator Full Screen</a></li>
-                                <li><a href="index__op__text_rotator_classic.html">Text Rotator Classic</a></li>
-                                <li><a href="index__op__gradient_overlay_full_screen.html">Gradient Overlay Full Screen</a></li>
-                                <li><a href="index__op__gradient_overlay_classic.html">Gradient Overlay Classic</a></li>
-                                <li><a href="index__op__video_background_full_screen.html">Video Background Full Screen</a></li>
-                                <li><a href="index__op__video_background_classic.html">Video Background Classic</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Multi Page</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="index.html">Image Full Screen</a></li>
-                                <li><a href="index__mp__image_classic.html">Image Classic</a></li>
-                                <li><a href="index__mp__slider_full_screen.html">Slider Full Screen</a></li>
-                                <li><a href="index__mp__slider_classic.html">Slider Classic</a></li>
-                                <li><a href="index__mp__text_rotator_full_screen.html">Text Rotator Full Screen</a></li>
-                                <li><a href="index__mp__text_rotator_classic.html">Text Rotator Classic</a></li>
-                                <li><a href="index__mp__gradient_overlay_full_screen.html">Gradient Overlay Full Screen</a></li>
-                                <li><a href="index__mp__gradient_overlay_classic.html">Gradient Overlay Classic</a></li>
-                                <li><a href="index__mp__video_background_full_screen.html">Video Background Full Screen</a></li>
-                                <li><a href="index__mp__video_background_classic.html">Video Background Classic</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="index__op__image_full_screen.html">Image Full Screen</a></li>
+                        <li><a href="index__op__image_classic.html">Image Classic</a></li>
+                        <li><a href="index__op__slider_full_screen.html">Slider Full Screen</a></li>
+                        <li><a href="index__op__slider_classic.html">Slider Classic</a></li>
+                        <li><a href="index__op__text_rotator_full_screen.html">Text Rotator Full Screen</a></li>
+                        <li><a href="index__op__text_rotator_classic.html">Text Rotator Classic</a></li>
+                        <li><a href="index__op__gradient_overlay_full_screen.html">Gradient Overlay Full Screen</a></li>
+                        <li><a href="index__op__gradient_overlay_classic.html">Gradient Overlay Classic</a></li>
+                        <li><a href="index__op__video_background_full_screen.html">Video Background Full Screen</a></li>
+                        <li><a href="index__op__video_background_classic.html">Video Background Classic</a></li>
                     </ul>
                 </li>
 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Pages</span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Multi Page</a>
                     <ul class="dropdown-menu">
+                        <li><a href="index.html">Image Full Screen</a></li>
+                        <li><a href="index__mp__image_classic.html">Image Classic</a></li>
+                        <li><a href="index__mp__slider_full_screen.html">Slider Full Screen</a></li>
+                        <li><a href="index__mp__slider_classic.html">Slider Classic</a></li>
+                        <li><a href="index__mp__text_rotator_full_screen.html">Text Rotator Full Screen</a></li>
+                        <li><a href="index__mp__text_rotator_classic.html">Text Rotator Classic</a></li>
+                        <li><a href="index__mp__gradient_overlay_full_screen.html">Gradient Overlay Full Screen</a></li>
+                        <li><a href="index__mp__gradient_overlay_classic.html">Gradient Overlay Classic</a></li>
+                        <li><a href="index__mp__video_background_full_screen.html">Video Background Full Screen</a></li>
+                        <li><a href="index__mp__video_background_classic.html">Video Background Classic</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
 
-                        <li>
-                            <a href="about_us.html">About</a>
-                        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Decks</span></a>
+            <ul class="dropdown-menu">
 
-                        <li>
-                            <a href="services.html">Services</a>
-                        </li>
+                <li>
+                    <a href="about_us.html">Create Deck</a>
+                </li>
 
-                        <li>
-                            <a href="pricing.html">Pricing</a>
-                        </li>
+                <li>
+                    <a href="/#/decks">View Decks</a>
+                </li>
 
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gallery</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="gallery__3_columns.html">3 Columns</a></li>
-                                <li><a href="gallery__4_columns.html">4 Columns</a></li>
-                                <li><a href="gallery__5_columns.html">5 Columns</a></li>
-                            </ul>
-                        </li>
+                <li>
+                    <a href="pricing.html">Pricing</a>
+                </li>
 
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="contact__classic_map.html">Classic Style</a></li>
-                                <li><a href="contact__full_width_map.html">Full Width Map</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="404.html">404 Page</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gallery</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="gallery__3_columns.html">3 Columns</a></li>
+                        <li><a href="gallery__4_columns.html">4 Columns</a></li>
+                        <li><a href="gallery__5_columns.html">5 Columns</a></li>
+                    </ul>
+                </li>
 
+                <li><a href="faq.html">FAQ</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="contact__classic_map.html">Classic Style</a></li>
+                        <li><a href="contact__full_width_map.html">Full Width Map</a></li>
+                    </ul>
+                </li>
+                <li><a href="404.html">404 Page</a></li>
+
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolio</a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="portfolio__boxed__lightbox.html">Portfolio Lightbox</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Boxed</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="portfolio__boxed__2_columns.html">2 Columns</a></li>
+                        <li><a href="portfolio__boxed__3_columns.html">3 Columns</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Wide</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="portfolio__wide__2_columns.html">2 Columns</a></li>
+                        <li><a href="portfolio__wide__3_columns.html">3 Columns</a></li>
+                        <li><a href="portfolio__wide__4_columns.html">4 Columns</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="portfolio__single.html">Single Portfolio</a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Blog</span></a>
+            <ul class="dropdown-menu">
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Standard</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="blog__standard__left_sidebar.html">Left Sidebar</a></li>
+                        <li><a href="blog__standard__right_sidebar.html">Right Sidebar</a></li>
+                        <li><a href="blog__standard__full_width.html">Full Width</a></li>
                     </ul>
                 </li>
 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolio</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Grid</a>
                     <ul class="dropdown-menu">
-                        <li>
-                            <a href="portfolio__boxed__lightbox.html">Portfolio Lightbox</a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Boxed</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="portfolio__boxed__2_columns.html">2 Columns</a></li>
-                                <li><a href="portfolio__boxed__3_columns.html">3 Columns</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Wide</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="portfolio__wide__2_columns.html">2 Columns</a></li>
-                                <li><a href="portfolio__wide__3_columns.html">3 Columns</a></li>
-                                <li><a href="portfolio__wide__4_columns.html">4 Columns</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="portfolio__single.html">Single Portfolio</a>
-                        </li>
+                        <li><a href="blog__grid__2_columns.html">2 Columns</a></li>
+                        <li><a href="blog__grid__3_columns.html">3 Columns</a></li>
+                        <li><a href="blog__grid__with_sidebar.html">With Sidebar</a></li>
                     </ul>
                 </li>
 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Blog</span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Single Blog Post</a>
                     <ul class="dropdown-menu">
-
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Standard</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="blog__standard__left_sidebar.html">Left Sidebar</a></li>
-                                <li><a href="blog__standard__right_sidebar.html">Right Sidebar</a></li>
-                                <li><a href="blog__standard__full_width.html">Full Width</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Grid</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="blog__grid__2_columns.html">2 Columns</a></li>
-                                <li><a href="blog__grid__3_columns.html">3 Columns</a></li>
-                                <li><a href="blog__grid__with_sidebar.html">With Sidebar</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Single Blog Post</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="blog__single__left_sidebar.html">Left Sidebar</a></li>
-                                <li><a href="blog__single__right_sidebar.html">Right Sidebar</a></li>
-                                <li><a href="blog__single__full_width.html">Full Width</a></li>
-                            </ul>
-                        </li>
-
-                    </ul>
-                </li>
-
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Components</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="icons.html"><i class="fa fa-heart"></i> Icons</a></li>
-                        <li><a href="typography.html"><i class="fa fa-font"></i> Typography</a></li>
-                        <li><a href="buttons.html"><i class="fa fa-plus-square"></i> Buttons</a></li>
-                        <li><a href="forms.html"><i class="fa fa-check-square"></i> Forms</a></li>
-                        <li><a href="tabs_and_accordions.html"><i class="fa fa-indent"></i> Tabs &amp; Accordions</a></li>
-                        <li><a href="alerts_and_wells.html"><i class="fa fa-bolt"></i> Alerts &amp; Wells</a></li>
+                        <li><a href="blog__single__left_sidebar.html">Left Sidebar</a></li>
+                        <li><a href="blog__single__right_sidebar.html">Right Sidebar</a></li>
+                        <li><a href="blog__single__full_width.html">Full Width</a></li>
                     </ul>
                 </li>
 
             </ul>
-        </div>
-        <!-- /Navigation Links -->
+        </li>
 
-    </div><!-- /.container -->
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Components</span></a>
+            <ul class="dropdown-menu">
+                <li><a href="icons.html"><i class="fa fa-heart"></i> Icons</a></li>
+                <li><a href="typography.html"><i class="fa fa-font"></i> Typography</a></li>
+                <li><a href="buttons.html"><i class="fa fa-plus-square"></i> Buttons</a></li>
+                <li><a href="forms.html"><i class="fa fa-check-square"></i> Forms</a></li>
+                <li><a href="tabs_and_accordions.html"><i class="fa fa-indent"></i> Tabs &amp; Accordions</a></li>
+                <li><a href="alerts_and_wells.html"><i class="fa fa-bolt"></i> Alerts &amp; Wells</a></li>
+            </ul>
+        </li>
+
+    </ul>
+</div>
+<!-- /Navigation Links -->
+
+</div><!-- /.container -->
 </nav>
 <!-- /Fixed Top Navigation -->
 
-<!-- Header -->
-<header id="header" class="header-wrapper home-parallax home-fade dark-bg ">
-    <div class="color-overlay"></div>
-    <div class="header-wrapper-inner">
-        <div class="container">
 
-            <div class="intro">
-                <h1>MTG Hydra</h1>
-                <p>Build - Join - Share</p>
-            </div><!-- /.intro -->
+<div id="app">
 
-        </div><!-- /.container -->
+    <router-view></router-view>
 
-        <div class="arrow-down">
-            <a href="#about-us" class="onPageNav">
-                <i class="ion-ios-arrow-down"></i>
-            </a>
-        </div><!-- /.arrow-down -->
-
-    </div><!-- /.header-wrapper-inner -->
-</header>
-<!-- /Header -->
-
-
-<!-- Our Process -->
-<section id="our-process" class="section our-process">
-    <div class="container">
-        <header class="section-heading">
-            <h2>What is MTG Hydra?</h2>
-        </header>
-
-        <div class="section-content">
-            <div class="process">
-
-                <!-- our-process-image -->
-                <div class="our-process-image">
-                    <span class="ion-social-buffer"></span>
-                </div>
-
-                <div class="our-process-text">
-                    <!-- our-process-text -->
-                    <h4>Build Decks</h4>
-                    <p>Search for individual cards and create decks.</p>
-                </div>
-
-            </div><!-- process -->
-
-            <!-- divider -->
-            <div class="divider divider-right hidden-xs">
-            </div>
-
-            <div class="process">
-
-                <!-- our-process-image -->
-                <div class="our-process-image left">
-                    <span class="ion-person-stalker"></span>
-                </div>
-
-                <div class="our-process-text right">
-
-                    <!-- our-process-text -->
-                    <h4>Join Teams</h4>
-                    <p>Create your own team with friends, or join a team with members from your local gamestore!</p>
-
-                </div>
-            </div><!-- process -->
-
-            <!-- divider -->
-            <div class="divider divider-left hidden-xs">
-            </div>
-
-            <div class="process">
-
-                <!-- our-process-image -->
-                <div class="our-process-image">
-                    <span class="ion-planet"></span>
-                </div>
-
-                <div class="our-process-text">
-
-                    <!-- our-process-text -->
-                    <h4>Share</h4>
-                    <p>Post your created decks to your team page. Team members can view and comment on your deck to give valuable feedback!</p>
-
-                </div>
-            </div><!-- process -->
-
-        </div><!-- section-content -->
-    </div><!-- container -->
-</section>
-<!-- /Our Process -->
-
-
-<!-- Call To Action -->
-<div id="cta-1" class="cta-1">
-    <div class="container">
-        <div class="call-to-action">
-            <div class="cta-text">Ready to build a deck?</div>
-            <a class="btn btn-default-o" href="#">Start Building</a>
-        </div>
-    </div><!-- container -->
 </div>
-<!-- /Call To Action -->
 
 
-<!-- Portfolio -->
-<section id="portfolio" class="section portfolio">
-    <div class="container">
-
-        <!---->
-        <header class="section-heading">
-            <h2>Recent Projects</h2>
-            <span>Successful projects,happy clients and great results</span>
-        </header>
-        <!---->
-
-        <div class="section-content">
-            <div class="main_content">
-                <div class="isotop-filter" id="filters">
-                    <button type="button" class="btn btn-isotop is-checked" data-filter="*">All</button>
-                    <button type="button" class="btn btn-isotop" data-filter=".design">Web</button>
-                    <button type="button" class="btn btn-isotop" data-filter=".wordpress">WordPress</button>
-                    <button type="button" class="btn btn-isotop" data-filter=".marketing">Marketing</button>
-                    <button type="button" class="btn btn-isotop" data-filter=".brandidentity">Brand Identity</button>
-                </div>
-            </div>  <!-- main_content -->
-        </div>
-    </div>
-
-    <!---->
-
-        <!---->
-
-        <!---->
-
-        <!---->
-        <div class="portfolio-grid">
-        <!---->
-
-    <!---->
-
-    <!---->
-
-            <ul id="da-thumbs" class="da-thumbs isotope">
-            <li data-category="design" class="design">
-                <a href="portfolio__single.html">
-                    <img src="assets/images/work/01.jpg" alt="" />
-                    <div class="portfolio-detail-overlay">
-                        <div class="middle-align-wrap">
-                            <div class="middle-align-cell">
-                                <h4>Corporate Website</h4>
-                                <span>Webdesign</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </li>
-
-            <li data-category="marketing" class="marketing">
-                <a href="portfolio__single.html">
-                    <img src="assets/images/work/02.jpg" alt="" />
-                    <div class="portfolio-detail-overlay">
-                        <div class="middle-align-wrap">
-                            <div class="middle-align-cell">
-                                <h4>Corporate Website</h4>
-                                <span>Webdesign</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </li>
-
-            <li data-category="wordpress" class="wordpress">
-                <a href="portfolio__single.html">
-                    <img src="assets/images/work/03.jpg" alt="" />
-                    <div class="portfolio-detail-overlay">
-                        <div class="middle-align-wrap">
-                            <div class="middle-align-cell">
-                                <h4>Corporate Website</h4>
-                                <span>Webdesign</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </li>
-
-            <li data-category="design" class="design">
-                <a href="portfolio__single.html">
-                    <img src="assets/images/work/04.jpg" alt="" />
-                    <div class="portfolio-detail-overlay">
-                        <div class="middle-align-wrap">
-                            <div class="middle-align-cell">
-                                <h4>Corporate Website</h4>
-                                <span>Webdesign</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </li>
-
-            <li data-category="marketing" class="marketing">
-                <a href="portfolio__single.html">
-                    <img src="assets/images/work/05.jpg" alt="" />
-                    <div class="portfolio-detail-overlay">
-                        <div class="middle-align-wrap">
-                            <div class="middle-align-cell">
-                                <h4>Corporate Website</h4>
-                                <span>Webdesign</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </li>
-
-            <li data-category="wordpress" class="wordpress">
-                <a href="portfolio__single.html">
-                    <img src="assets/images/work/06.jpg" alt="" />
-                    <div class="portfolio-detail-overlay">
-                        <div class="middle-align-wrap">
-                            <div class="middle-align-cell">
-                                <h4>Corporate Website</h4>
-                                <span>Webdesign</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </li>
-
-            <li data-category="design" class="design">
-                <a href="portfolio__single.html">
-                    <img src="assets/images/work/07.jpg" alt="" />
-                    <div class="portfolio-detail-overlay">
-                        <div class="middle-align-wrap">
-                            <div class="middle-align-cell">
-                                <h4>Corporate Website</h4>
-                                <span>Webdesign</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </li>
-
-            <li data-category="marketing" class="marketing">
-                <a href="portfolio__single.html">
-                    <img src="assets/images/work/08.jpg" alt="" />
-                    <div class="portfolio-detail-overlay">
-                        <div class="middle-align-wrap">
-                            <div class="middle-align-cell">
-                                <h4>Corporate Website</h4>
-                                <span>Webdesign</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </li>
-
-            <li data-category="brandidentity" class="brandidentity">
-                <a href="portfolio__single.html">
-                    <img src="assets/images/work/09.jpg" alt="" />
-                    <div class="portfolio-detail-overlay">
-                        <div class="middle-align-wrap">
-                            <div class="middle-align-cell">
-                                <h4>Corporate Website</h4>
-                                <span>Webdesign</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </li>
-
-            <li data-category="marketing" class="marketing">
-                <a href="portfolio__single.html">
-                    <img src="assets/images/work/10.jpg" alt="" />
-                    <div class="portfolio-detail-overlay">
-                        <div class="middle-align-wrap">
-                            <div class="middle-align-cell">
-                                <h4>Corporate Website</h4>
-                                <span>Webdesign</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </li>
-
-            <li data-category="brandidentity" class="brandidentity">
-                <a href="portfolio__single.html">
-                    <img src="assets/images/work/11.jpg" alt="" />
-                    <div class="portfolio-detail-overlay">
-                        <div class="middle-align-wrap">
-                            <div class="middle-align-cell">
-                                <h4>Corporate Website</h4>
-                                <span>Webdesign</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </li>
-
-            <li data-category="brandidentity" class="brandidentity">
-                <a href="portfolio__single.html">
-                    <img src="assets/images/work/12.jpg" alt="" />
-                    <div class="portfolio-detail-overlay">
-                        <div class="middle-align-wrap">
-                            <div class="middle-align-cell">
-                                <h4>Corporate Website</h4>
-                                <span>Webdesign</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </li>
-        </ul>
-    </div><!--/portfolio-grid-->
-
-
-</section>
-<!-- /Portfolio -->
-<!-- Call To Action -->
-<div id="cta-2" class="cta-2 text-center">
-    <div class="container">
-        <span class="cta-text">Want to see more from our works lorem ipsum dolor sit amet? </span>
-        <a class="btn btn-default-o" href="portfolio__boxed__3_columns.html">View all</a>
-    </div>
-</div>
-<!-- Call To Action -->
-
-<!-- Blog -->
-<section id="blog" class="section blog">
-    <div class="container">
-
-        <!---->
-        <header class="section-heading">
-            <h2>From The Blog</h2>
-            <span>Awesome articles from the blog</span>
-        </header>
-        <!---->
-
-        <div id="blogContent" class="section-content">
-            <div class="row">
-                <div class="col-sm-6 col-md-4">
-                    <div class="blog-post">
-                        <header>
-                            <h4 class="date">29<br>Aug</h4>
-                            <div class="blog-element">
-                                <img class="img-responsive" src="assets/images/blog/1.jpg" alt="">
-                            </div>
-                        </header>
-                        <div class="blog-content">
-                            <h4><a href="blog__single__right_sidebar.html">Why Billionaires join Gates Giving Pledge</a></h4>
-                            <div class="post-meta">
-                                <span>By <a href="#">Prium</a></span>
-                                <span><a href="#">30 Comments</a></span>
-                            </div>
-                            <p>They signed the Giving Pledge -- an effort started in 2010 by ...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4">
-                    <div class="blog-post">
-                        <header>
-                            <h4 class="date">29<br>Aug</h4>
-                            <div class="blog-element">
-                                <img class="img-responsive" src="assets/images/blog/2.jpg" alt="">
-                            </div>
-                        </header>
-                        <div class="blog-content">
-                            <h4><a href="blog__single__right_sidebar.html">Web agency template released</a></h4>
-                            <div class="post-meta">
-                                <span>By <a href="#">John Snow</a></span>
-                                <span><a href="#">30 Comments</a></span>
-                            </div>
-                            <p>Data from the Centers for Medicare Medicaid Services include payments and ..</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4">
-                    <div class="blog-post">
-                        <header>
-                            <h4 class="date">29<br>Aug</h4>
-                            <div class="blog-element">
-                                <img class="img-responsive" src="assets/images/blog/3.jpg" alt="">
-                            </div>
-                        </header>
-                        <div class="blog-content">
-                            <h4><a href="blog__single__right_sidebar.html">A companytour to lake powel, arizona</a></h4>
-                            <div class="post-meta">
-                                <span>By <a href="#">Tailor</a></span>
-                                <span><a href="#">30 Comments</a></span>
-                            </div>
-                            <p>Lake Powell is a reservoir on the Colorado River, straddling the border between ...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4 visible-sm">
-                    <div class="blog-post">
-                        <header>
-                            <h4 class="date">29<br>Aug</h4>
-                            <div class="blog-element">
-                                <img class="img-responsive" src="assets/images/blog/1.jpg" alt="">
-                            </div>
-                        </header>
-                        <div class="blog-content">
-                            <h4><a href="blog__single__right_sidebar.html">Why Billionaires join Gates Giving Pledge</a></h4>
-                            <div class="post-meta">
-                                <span>By <a href="#">Prium</a></span>
-                                <span><a href="#">30 Comments</a></span>
-                            </div>
-                            <p>They signed the Giving Pledge -- an effort started in 2010 by ...</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div><!--/#blogContent-->
-
-        <div class="text-center">
-            <a id="loadBlogPosts" href="blog__standard__right_sidebar.html" class="btn btn-dark">View All <span class="fa fa-angle-double-right"></span></a>
-        </div>
-
-    </div><!--/.container-->
-</section>
-<!-- Blog -->
-
-
-<!-- Footer widgets -->
-<section id="footer-widgets" class="section footer-widgets dark-bg">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-sm-6">
-                <div class="content-wrap widget-text">
-                    <h4>About the reign</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores dolorum eius libero nihil. Fugiat ipsum officia reprehenderit rerum saepe. Assumenda distinctio, voluptatibus. At consectetur cumque enim error laudantium mollitia obcaecati!</p>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="content-wrap widget-contact">
-                    <h4>Contact info</h4>
-                    <ul>
-                        <li>
-                            <i class="ion-home"></i> 13005 Greenville California.
-                        </li>
-                        <li>
-                            <i class="ion-android-call"></i> (303) 674-7750
-                        </li>
-                        <li>
-                            <i class="ion-email"></i> info@yoursite.com
-                        </li>
-                        <li>
-                            <i class="ion-ios-location"></i> Map and Direction
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="content-wrap widget-recent-posts">
-                    <h4>Recent Posts</h4>
-                    <ul>
-                        <li>
-                            <a href="#" class="post-title">Lorem ipsum dolor sit amet</a>
-                            by <a href="#" class="author">Jhon Smith</a>
-                        </li>
-                        <li>
-                            <a href="#" class="post-title">Lorem ipsum dolor sit amet</a>
-                            by <a href="#" class="author">Jhon Smith</a>
-                        </li>
-                        <li>
-                            <a href="#" class="post-title">Lorem ipsum dolor sit amet</a>
-                            by <a href="#" class="author">Jhon Smith</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="content-wrap widget-gallery">
-                    <h4>Photo Gallery</h4>
-                    <div class="lightbox-gallery">
-                        <a href="assets/images/work/01.jpg">
-                            <img src="assets/images/work/01.jpg" alt=""/>
-                        </a>
-                        <a href="assets/images/work/02.jpg">
-                            <img src="assets/images/work/02.jpg" alt=""/>
-                        </a>
-                        <a href="assets/images/work/03.jpg">
-                            <img src="assets/images/work/03.jpg" alt=""/>
-                        </a>
-                        <a href="assets/images/work/04.jpg">
-                            <img src="assets/images/work/04.jpg" alt=""/>
-                        </a>
-                        <a href="assets/images/work/05.jpg">
-                            <img src="assets/images/work/05.jpg" alt=""/>
-                        </a>
-                        <a href="assets/images/work/06.jpg">
-                            <img src="assets/images/work/06.jpg" alt=""/>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Footer widgets -->
 <!-- footer -->
 <footer id="footer" class="footer">
     <div class="container">
@@ -774,6 +291,8 @@
 </footer>
 <!-- #footer -->
 
+
+
 <a id="totop" href="#totop"><i class="fa fa-angle-double-up"></i></a>
 <!-- js -->
 <script src="assets/lib/imagesloaded/imagesloaded.pkgd.min.js"></script>
@@ -798,3 +317,654 @@
 
 </body>
 </html>
+
+<template id="home-page">
+    <div>
+        
+        <!-- Header -->
+        <header id="header" class="header-wrapper home-parallax home-fade dark-bg ">
+            <div class="color-overlay"></div>
+            <div class="header-wrapper-inner">
+                <div class="container">
+
+                    <div class="intro">
+                        <h1>MTG Hydra</h1>
+                        <p>Build - Join - Share</p>
+                    </div><!-- /.intro -->
+
+                </div><!-- /.container -->
+
+                <div class="arrow-down">
+                    <a href="#about-us" class="onPageNav">
+                        <i class="ion-ios-arrow-down"></i>
+                    </a>
+                </div><!-- /.arrow-down -->
+
+            </div><!-- /.header-wrapper-inner -->
+        </header>
+        <!-- /Header -->
+
+
+        <!-- Our Process -->
+        <section id="our-process" class="section our-process">
+            <div class="container">
+                <header class="section-heading">
+                    <h2>What is MTG Hydra?</h2>
+                </header>
+
+                <div class="section-content">
+                    <div class="process">
+
+                        <!-- our-process-image -->
+                        <div class="our-process-image">
+                            <span class="ion-social-buffer"></span>
+                        </div>
+
+                        <div class="our-process-text">
+                            <!-- our-process-text -->
+                            <h4>Build Decks</h4>
+                            <p>Search for individual cards and create decks.</p>
+                        </div>
+
+                    </div><!-- process -->
+
+                    <!-- divider -->
+                    <div class="divider divider-right hidden-xs">
+                    </div>
+
+                    <div class="process">
+
+                        <!-- our-process-image -->
+                        <div class="our-process-image left">
+                            <span class="ion-person-stalker"></span>
+                        </div>
+
+                        <div class="our-process-text right">
+
+                            <!-- our-process-text -->
+                            <h4>Join Teams</h4>
+                            <p>Create your own team with friends, or join a team with members from your local gamestore!</p>
+
+                        </div>
+                    </div><!-- process -->
+
+                    <!-- divider -->
+                    <div class="divider divider-left hidden-xs">
+                    </div>
+
+                    <div class="process">
+
+                        <!-- our-process-image -->
+                        <div class="our-process-image">
+                            <span class="ion-planet"></span>
+                        </div>
+
+                        <div class="our-process-text">
+
+                            <!-- our-process-text -->
+                            <h4>Share</h4>
+                            <p>Post your created decks to your team page. Team members can view and comment on your deck to give valuable feedback!</p>
+
+                        </div>
+                    </div><!-- process -->
+
+                </div><!-- section-content -->
+            </div><!-- container -->
+        </section>
+        <!-- /Our Process -->
+
+
+        <!-- Call To Action -->
+        <div id="cta-1" class="cta-1">
+            <div class="container">
+                <div class="call-to-action">
+                    <div class="cta-text">Ready to build a deck?</div>
+                    <a class="btn btn-default-o" href="#">Start Building</a>
+                </div>
+            </div><!-- container -->
+        </div>
+        <!-- /Call To Action -->
+
+
+        <!-- Portfolio -->
+        <section id="portfolio" class="section portfolio">
+            <div class="container">
+
+                <!---->
+                <header class="section-heading">
+                    <h2>Recent Projects</h2>
+                    <span>Successful projects,happy clients and great results</span>
+                </header>
+                <!---->
+
+                <div class="section-content">
+                    <div class="main_content">
+                        <div class="isotop-filter" id="filters">
+                            <button type="button" class="btn btn-isotop is-checked" data-filter="*">All</button>
+                            <button type="button" class="btn btn-isotop" data-filter=".design">Web</button>
+                            <button type="button" class="btn btn-isotop" data-filter=".wordpress">WordPress</button>
+                            <button type="button" class="btn btn-isotop" data-filter=".marketing">Marketing</button>
+                            <button type="button" class="btn btn-isotop" data-filter=".brandidentity">Brand Identity</button>
+                        </div>
+                    </div>  <!-- main_content -->
+                </div>
+            </div>
+
+            <!---->
+
+                <!---->
+
+                <!---->
+
+                <!---->
+                <div class="portfolio-grid">
+                <!---->
+
+            <!---->
+
+            <!---->
+
+                    <ul id="da-thumbs" class="da-thumbs isotope">
+                    <li data-category="design" class="design">
+                        <a href="portfolio__single.html">
+                            <img src="assets/images/work/01.jpg" alt="" />
+                            <div class="portfolio-detail-overlay">
+                                <div class="middle-align-wrap">
+                                    <div class="middle-align-cell">
+                                        <h4>Corporate Website</h4>
+                                        <span>Webdesign</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li data-category="marketing" class="marketing">
+                        <a href="portfolio__single.html">
+                            <img src="assets/images/work/02.jpg" alt="" />
+                            <div class="portfolio-detail-overlay">
+                                <div class="middle-align-wrap">
+                                    <div class="middle-align-cell">
+                                        <h4>Corporate Website</h4>
+                                        <span>Webdesign</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li data-category="wordpress" class="wordpress">
+                        <a href="portfolio__single.html">
+                            <img src="assets/images/work/03.jpg" alt="" />
+                            <div class="portfolio-detail-overlay">
+                                <div class="middle-align-wrap">
+                                    <div class="middle-align-cell">
+                                        <h4>Corporate Website</h4>
+                                        <span>Webdesign</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li data-category="design" class="design">
+                        <a href="portfolio__single.html">
+                            <img src="assets/images/work/04.jpg" alt="" />
+                            <div class="portfolio-detail-overlay">
+                                <div class="middle-align-wrap">
+                                    <div class="middle-align-cell">
+                                        <h4>Corporate Website</h4>
+                                        <span>Webdesign</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li data-category="marketing" class="marketing">
+                        <a href="portfolio__single.html">
+                            <img src="assets/images/work/05.jpg" alt="" />
+                            <div class="portfolio-detail-overlay">
+                                <div class="middle-align-wrap">
+                                    <div class="middle-align-cell">
+                                        <h4>Corporate Website</h4>
+                                        <span>Webdesign</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li data-category="wordpress" class="wordpress">
+                        <a href="portfolio__single.html">
+                            <img src="assets/images/work/06.jpg" alt="" />
+                            <div class="portfolio-detail-overlay">
+                                <div class="middle-align-wrap">
+                                    <div class="middle-align-cell">
+                                        <h4>Corporate Website</h4>
+                                        <span>Webdesign</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li data-category="design" class="design">
+                        <a href="portfolio__single.html">
+                            <img src="assets/images/work/07.jpg" alt="" />
+                            <div class="portfolio-detail-overlay">
+                                <div class="middle-align-wrap">
+                                    <div class="middle-align-cell">
+                                        <h4>Corporate Website</h4>
+                                        <span>Webdesign</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li data-category="marketing" class="marketing">
+                        <a href="portfolio__single.html">
+                            <img src="assets/images/work/08.jpg" alt="" />
+                            <div class="portfolio-detail-overlay">
+                                <div class="middle-align-wrap">
+                                    <div class="middle-align-cell">
+                                        <h4>Corporate Website</h4>
+                                        <span>Webdesign</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li data-category="brandidentity" class="brandidentity">
+                        <a href="portfolio__single.html">
+                            <img src="assets/images/work/09.jpg" alt="" />
+                            <div class="portfolio-detail-overlay">
+                                <div class="middle-align-wrap">
+                                    <div class="middle-align-cell">
+                                        <h4>Corporate Website</h4>
+                                        <span>Webdesign</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li data-category="marketing" class="marketing">
+                        <a href="portfolio__single.html">
+                            <img src="assets/images/work/10.jpg" alt="" />
+                            <div class="portfolio-detail-overlay">
+                                <div class="middle-align-wrap">
+                                    <div class="middle-align-cell">
+                                        <h4>Corporate Website</h4>
+                                        <span>Webdesign</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li data-category="brandidentity" class="brandidentity">
+                        <a href="portfolio__single.html">
+                            <img src="assets/images/work/11.jpg" alt="" />
+                            <div class="portfolio-detail-overlay">
+                                <div class="middle-align-wrap">
+                                    <div class="middle-align-cell">
+                                        <h4>Corporate Website</h4>
+                                        <span>Webdesign</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li data-category="brandidentity" class="brandidentity">
+                        <a href="portfolio__single.html">
+                            <img src="assets/images/work/12.jpg" alt="" />
+                            <div class="portfolio-detail-overlay">
+                                <div class="middle-align-wrap">
+                                    <div class="middle-align-cell">
+                                        <h4>Corporate Website</h4>
+                                        <span>Webdesign</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div><!--/portfolio-grid-->
+
+
+        </section>
+        <!-- /Portfolio -->
+        <!-- Call To Action -->
+        <div id="cta-2" class="cta-2 text-center">
+            <div class="container">
+                <span class="cta-text">Want to see more from our works lorem ipsum dolor sit amet? </span>
+                <a class="btn btn-default-o" href="portfolio__boxed__3_columns.html">View all</a>
+            </div>
+        </div>
+        <!-- Call To Action -->
+
+        <!-- Blog -->
+        <section id="blog" class="section blog">
+            <div class="container">
+
+                <!---->
+                <header class="section-heading">
+                    <h2>From The Blog</h2>
+                    <span>Awesome articles from the blog</span>
+                </header>
+                <!---->
+
+                <div id="blogContent" class="section-content">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4">
+                            <div class="blog-post">
+                                <header>
+                                    <h4 class="date">29<br>Aug</h4>
+                                    <div class="blog-element">
+                                        <img class="img-responsive" src="assets/images/blog/1.jpg" alt="">
+                                    </div>
+                                </header>
+                                <div class="blog-content">
+                                    <h4><a href="blog__single__right_sidebar.html">Why Billionaires join Gates Giving Pledge</a></h4>
+                                    <div class="post-meta">
+                                        <span>By <a href="#">Prium</a></span>
+                                        <span><a href="#">30 Comments</a></span>
+                                    </div>
+                                    <p>They signed the Giving Pledge -- an effort started in 2010 by ...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4">
+                            <div class="blog-post">
+                                <header>
+                                    <h4 class="date">29<br>Aug</h4>
+                                    <div class="blog-element">
+                                        <img class="img-responsive" src="assets/images/blog/2.jpg" alt="">
+                                    </div>
+                                </header>
+                                <div class="blog-content">
+                                    <h4><a href="blog__single__right_sidebar.html">Web agency template released</a></h4>
+                                    <div class="post-meta">
+                                        <span>By <a href="#">John Snow</a></span>
+                                        <span><a href="#">30 Comments</a></span>
+                                    </div>
+                                    <p>Data from the Centers for Medicare Medicaid Services include payments and ..</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4">
+                            <div class="blog-post">
+                                <header>
+                                    <h4 class="date">29<br>Aug</h4>
+                                    <div class="blog-element">
+                                        <img class="img-responsive" src="assets/images/blog/3.jpg" alt="">
+                                    </div>
+                                </header>
+                                <div class="blog-content">
+                                    <h4><a href="blog__single__right_sidebar.html">A companytour to lake powel, arizona</a></h4>
+                                    <div class="post-meta">
+                                        <span>By <a href="#">Tailor</a></span>
+                                        <span><a href="#">30 Comments</a></span>
+                                    </div>
+                                    <p>Lake Powell is a reservoir on the Colorado River, straddling the border between ...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 visible-sm">
+                            <div class="blog-post">
+                                <header>
+                                    <h4 class="date">29<br>Aug</h4>
+                                    <div class="blog-element">
+                                        <img class="img-responsive" src="assets/images/blog/1.jpg" alt="">
+                                    </div>
+                                </header>
+                                <div class="blog-content">
+                                    <h4><a href="blog__single__right_sidebar.html">Why Billionaires join Gates Giving Pledge</a></h4>
+                                    <div class="post-meta">
+                                        <span>By <a href="#">Prium</a></span>
+                                        <span><a href="#">30 Comments</a></span>
+                                    </div>
+                                    <p>They signed the Giving Pledge -- an effort started in 2010 by ...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!--/#blogContent-->
+
+                <div class="text-center">
+                    <a id="loadBlogPosts" href="blog__standard__right_sidebar.html" class="btn btn-dark">View All <span class="fa fa-angle-double-right"></span></a>
+                </div>
+
+            </div><!--/.container-->
+        </section>
+        <!-- Blog -->
+        
+    </div>
+</template>
+
+<template id="decks-page">
+    <div>
+        <header id="header" class="home-parallax home-fade dark-bg header-inner">
+            <div class="color-overlay"></div>
+            <div class="container">
+                <h1>Portfolio</h1>
+                <div class="breadcrumb">
+                    <a href="#">Home</a> <i class="fa fa-angle-double-right"></i> <a href="#">Portfolio</a>
+                    
+                </div>
+            </div>
+        </header>
+        <div>
+            <!-- Portfolio -->
+            <section id="portfolio" class="section portfolio">
+                <div class="container">
+
+                    <!---->
+
+                    <div class="section-content">
+                        <div class="main_content">
+                            <div class="isotop-filter" id="filters">
+                                <button type="button" class="btn btn-isotop is-checked" data-filter="*">All</button>
+                                <button type="button" class="btn btn-isotop" data-filter=".design">Web</button>
+                                <button type="button" class="btn btn-isotop" data-filter=".wordpress">WordPress</button>
+                                <button type="button" class="btn btn-isotop" data-filter=".marketing">Marketing</button>
+                                <button type="button" class="btn btn-isotop" data-filter=".brandidentity">Brand Identity</button>
+                            </div>
+                        </div>  <!-- main_content -->
+                    </div>
+                </div>
+
+                <!---->
+
+                <!---->
+
+                    <!---->
+
+                    <!---->
+                    <div class="container portfolio-grid three-col">
+                    <!---->
+
+                <!---->
+
+                        <ul id="da-thumbs" class="da-thumbs isotope">
+                        <li data-category="design" class="design">
+                            <a href="portfolio__single.html">
+                                <img src="assets/images/work/01.jpg" alt="" />
+                                <div class="portfolio-detail-overlay">
+                                    <div class="middle-align-wrap">
+                                        <div class="middle-align-cell">
+                                            <h4>Corporate Website</h4>
+                                            <span>Webdesign</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li data-category="marketing" class="marketing">
+                            <a href="portfolio__single.html">
+                                <img src="assets/images/work/02.jpg" alt="" />
+                                <div class="portfolio-detail-overlay">
+                                    <div class="middle-align-wrap">
+                                        <div class="middle-align-cell">
+                                            <h4>Corporate Website</h4>
+                                            <span>Webdesign</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li data-category="wordpress" class="wordpress">
+                            <a href="portfolio__single.html">
+                                <img src="assets/images/work/03.jpg" alt="" />
+                                <div class="portfolio-detail-overlay">
+                                    <div class="middle-align-wrap">
+                                        <div class="middle-align-cell">
+                                            <h4>Corporate Website</h4>
+                                            <span>Webdesign</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li data-category="design" class="design">
+                            <a href="portfolio__single.html">
+                                <img src="assets/images/work/04.jpg" alt="" />
+                                <div class="portfolio-detail-overlay">
+                                    <div class="middle-align-wrap">
+                                        <div class="middle-align-cell">
+                                            <h4>Corporate Website</h4>
+                                            <span>Webdesign</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li data-category="marketing" class="marketing">
+                            <a href="portfolio__single.html">
+                                <img src="assets/images/work/05.jpg" alt="" />
+                                <div class="portfolio-detail-overlay">
+                                    <div class="middle-align-wrap">
+                                        <div class="middle-align-cell">
+                                            <h4>Corporate Website</h4>
+                                            <span>Webdesign</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li data-category="wordpress" class="wordpress">
+                            <a href="portfolio__single.html">
+                                <img src="assets/images/work/06.jpg" alt="" />
+                                <div class="portfolio-detail-overlay">
+                                    <div class="middle-align-wrap">
+                                        <div class="middle-align-cell">
+                                            <h4>Corporate Website</h4>
+                                            <span>Webdesign</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li data-category="design" class="design">
+                            <a href="portfolio__single.html">
+                                <img src="assets/images/work/07.jpg" alt="" />
+                                <div class="portfolio-detail-overlay">
+                                    <div class="middle-align-wrap">
+                                        <div class="middle-align-cell">
+                                            <h4>Corporate Website</h4>
+                                            <span>Webdesign</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li data-category="marketing" class="marketing">
+                            <a href="portfolio__single.html">
+                                <img src="assets/images/work/08.jpg" alt="" />
+                                <div class="portfolio-detail-overlay">
+                                    <div class="middle-align-wrap">
+                                        <div class="middle-align-cell">
+                                            <h4>Corporate Website</h4>
+                                            <span>Webdesign</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li data-category="brandidentity" class="brandidentity">
+                            <a href="portfolio__single.html">
+                                <img src="assets/images/work/09.jpg" alt="" />
+                                <div class="portfolio-detail-overlay">
+                                    <div class="middle-align-wrap">
+                                        <div class="middle-align-cell">
+                                            <h4>Corporate Website</h4>
+                                            <span>Webdesign</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li data-category="marketing" class="marketing">
+                            <a href="portfolio__single.html">
+                                <img src="assets/images/work/10.jpg" alt="" />
+                                <div class="portfolio-detail-overlay">
+                                    <div class="middle-align-wrap">
+                                        <div class="middle-align-cell">
+                                            <h4>Corporate Website</h4>
+                                            <span>Webdesign</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li data-category="brandidentity" class="brandidentity">
+                            <a href="portfolio__single.html">
+                                <img src="assets/images/work/11.jpg" alt="" />
+                                <div class="portfolio-detail-overlay">
+                                    <div class="middle-align-wrap">
+                                        <div class="middle-align-cell">
+                                            <h4>Corporate Website</h4>
+                                            <span>Webdesign</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li data-category="brandidentity" class="brandidentity">
+                            <a href="portfolio__single.html">
+                                <img src="assets/images/work/12.jpg" alt="" />
+                                <div class="portfolio-detail-overlay">
+                                    <div class="middle-align-wrap">
+                                        <div class="middle-align-cell">
+                                            <h4>Corporate Website</h4>
+                                            <span>Webdesign</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div><!--/portfolio-grid-->
+
+
+            </section>
+            <!-- /Portfolio -->
+        </div>
+    </div>
+</template>
