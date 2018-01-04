@@ -5,6 +5,11 @@ class V1::DecksController < ApplicationController
     render json: decks.as_json
   end
 
+  def show
+    deck = Deck.find_by(id: params["id"])
+    render json: deck.as_json
+  end
+
   def new
     deck = Deck.new
     render "new.html.erb"

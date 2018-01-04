@@ -24,9 +24,11 @@ class Frontend
     # if user["admin"]
     @mm_options = {
       "View all Decks" => -> do view_all_decks end,
+      "View Single Deck" => -> do view_single_deck end,
       "Create a Deck" => -> do create_deck end,
       "Search for a card" => -> do card_search end,
       "Delete deck" => -> do delete_deck end,
+      "Change Deck" => -> do deck_change_menu end,
       "Exit" => -> do quit end
     }
   end
@@ -39,6 +41,13 @@ class Frontend
       puts indiv["name"]
       puts indiv["description"]
     end
+  end
+
+  def view_single_deck
+    print "Please enter the deck id: "
+    input_deck_id = gets.chomp.to_i
+    response = Unirest.get("#{$base_url}/decks/#{input_deck_id}" )
+    puts response.body
   end
 
   def card_search
@@ -119,6 +128,16 @@ class Frontend
       puts "\nDeck deleted."
       sleep 0.5
     end
+  end
+
+  def deck_change_menu
+    print "Enter deck ID to be changed: "
+    @deck_change_id = gets.chomp.to_i
+    @deck_menu_options = {
+      "Update quantity of a card" => -> do update_quantity end,
+      "Remove cards" => -> do remove_cards end,
+      "Add cards" => -> do add_cards end
+    }
   end
 
   def quit

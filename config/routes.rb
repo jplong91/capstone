@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     post "/users" => "users#create"
 
     get "/decks" => "decks#index"
+    get "/decks/:id" => "decks#show"
     post "/decks" => "decks#create"
     delete "/decks/:id" => "decks#destroy"
 
