@@ -227,29 +227,23 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-sm-4">
-                <p class="copyright text-xs-center">&copy; 2015 Your company name</p>
+                <a class="copyright text-xs-center" href="/">MTG | Hydra</a>
             </div>
 
             <div class="col-md-5 col-sm-4">
                 <ul class="footer-social-block">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="https://github.com/jplong91" target="_blank"><i class="fa fa-github"></i></a></li>
 
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="https://medium.com/@jplong91" target="_blank"><i class="fa fa-medium"></i></a></li>
 
-                    <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
-
-                    <li><a href="#"><i class="fa fa-behance"></i></a></li>
-
-                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-
-                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="https://www.linkedin.com/in/johnlong91/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
 
                 </ul>
             </div>
 
             <div class="col-md-4 col-sm-4">
                 <div class="footer-menu text-xs-center">
-                    <a href="#">Privacy Policy</a> | <a href="">Terms &amp; Conditions</a>
+                    By: <a href="https://jplong91.github.io/" target="_blank">John Long</a>
                 </div>
             </div>
         </div>
@@ -718,9 +712,9 @@
         <header id="header" class="home-parallax home-fade dark-bg header-inner">
             <div class="color-overlay"></div>
             <div class="container">
-                <h1>Portfolio</h1>
+                <h1>Decks</h1>
                 <div class="breadcrumb">
-                    <a href="#">Home</a> <i class="fa fa-angle-double-right"></i> <a href="#">Portfolio</a>
+                    <a href="#">Home</a> <i class="fa fa-angle-double-right"></i> <a href="#">Decks</a>
                     
                 </div>
             </div>
@@ -736,10 +730,10 @@
                         <div class="main_content">
                             <div class="isotop-filter" id="filters">
                                 <button type="button" class="btn btn-isotop is-checked" data-filter="*">All</button>
-                                <button type="button" class="btn btn-isotop" data-filter=".design">Web</button>
-                                <button type="button" class="btn btn-isotop" data-filter=".wordpress">WordPress</button>
-                                <button type="button" class="btn btn-isotop" data-filter=".marketing">Marketing</button>
-                                <button type="button" class="btn btn-isotop" data-filter=".brandidentity">Brand Identity</button>
+                                <button type="button" class="btn btn-isotop" data-filter=".design">Standard</button>
+                                <button type="button" class="btn btn-isotop" data-filter=".wordpress">Modern</button>
+                                <button type="button" class="btn btn-isotop" data-filter=".marketing">Legacy</button>
+                                <button type="button" class="btn btn-isotop" data-filter=".brandidentity">Limited</button>
                             </div>
                         </div>  <!-- main_content -->
                     </div>
@@ -757,22 +751,23 @@
 
                 <!---->
 
-                        <ul id="da-thumbs" class="da-thumbs isotope">
-                        <li data-category="design" class="design">
+                    <ul id="da-thumbs" class="da-thumbs isotope">
+
+                        <li class="design" v-for="deck in decks" data-category="deck.format">
                             <a href="portfolio__single.html">
-                                <img src="assets/images/work/01.jpg" alt="" />
+                                <img v-bind:src="deck.displayImage" class="decks-page-indiv"/>
                                 <div class="portfolio-detail-overlay">
                                     <div class="middle-align-wrap">
                                         <div class="middle-align-cell">
-                                            <h4>Corporate Website</h4>
-                                            <span>Webdesign</span>
+                                            <h4>{{ deck.name }}</h4>
+                                            <span>{{ deck.description }}</span>
                                         </div>
                                     </div>
                                 </div>
                             </a>
                         </li>
 
-                        <li data-category="marketing" class="marketing">
+                        <!-- <li data-category="marketing" class="marketing">
                             <a href="portfolio__single.html">
                                 <img src="assets/images/work/02.jpg" alt="" />
                                 <div class="portfolio-detail-overlay">
@@ -798,133 +793,7 @@
                                     </div>
                                 </div>
                             </a>
-                        </li>
-
-                        <li data-category="design" class="design">
-                            <a href="portfolio__single.html">
-                                <img src="assets/images/work/04.jpg" alt="" />
-                                <div class="portfolio-detail-overlay">
-                                    <div class="middle-align-wrap">
-                                        <div class="middle-align-cell">
-                                            <h4>Corporate Website</h4>
-                                            <span>Webdesign</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li data-category="marketing" class="marketing">
-                            <a href="portfolio__single.html">
-                                <img src="assets/images/work/05.jpg" alt="" />
-                                <div class="portfolio-detail-overlay">
-                                    <div class="middle-align-wrap">
-                                        <div class="middle-align-cell">
-                                            <h4>Corporate Website</h4>
-                                            <span>Webdesign</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li data-category="wordpress" class="wordpress">
-                            <a href="portfolio__single.html">
-                                <img src="assets/images/work/06.jpg" alt="" />
-                                <div class="portfolio-detail-overlay">
-                                    <div class="middle-align-wrap">
-                                        <div class="middle-align-cell">
-                                            <h4>Corporate Website</h4>
-                                            <span>Webdesign</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li data-category="design" class="design">
-                            <a href="portfolio__single.html">
-                                <img src="assets/images/work/07.jpg" alt="" />
-                                <div class="portfolio-detail-overlay">
-                                    <div class="middle-align-wrap">
-                                        <div class="middle-align-cell">
-                                            <h4>Corporate Website</h4>
-                                            <span>Webdesign</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li data-category="marketing" class="marketing">
-                            <a href="portfolio__single.html">
-                                <img src="assets/images/work/08.jpg" alt="" />
-                                <div class="portfolio-detail-overlay">
-                                    <div class="middle-align-wrap">
-                                        <div class="middle-align-cell">
-                                            <h4>Corporate Website</h4>
-                                            <span>Webdesign</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li data-category="brandidentity" class="brandidentity">
-                            <a href="portfolio__single.html">
-                                <img src="assets/images/work/09.jpg" alt="" />
-                                <div class="portfolio-detail-overlay">
-                                    <div class="middle-align-wrap">
-                                        <div class="middle-align-cell">
-                                            <h4>Corporate Website</h4>
-                                            <span>Webdesign</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li data-category="marketing" class="marketing">
-                            <a href="portfolio__single.html">
-                                <img src="assets/images/work/10.jpg" alt="" />
-                                <div class="portfolio-detail-overlay">
-                                    <div class="middle-align-wrap">
-                                        <div class="middle-align-cell">
-                                            <h4>Corporate Website</h4>
-                                            <span>Webdesign</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li data-category="brandidentity" class="brandidentity">
-                            <a href="portfolio__single.html">
-                                <img src="assets/images/work/11.jpg" alt="" />
-                                <div class="portfolio-detail-overlay">
-                                    <div class="middle-align-wrap">
-                                        <div class="middle-align-cell">
-                                            <h4>Corporate Website</h4>
-                                            <span>Webdesign</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li data-category="brandidentity" class="brandidentity">
-                            <a href="portfolio__single.html">
-                                <img src="assets/images/work/12.jpg" alt="" />
-                                <div class="portfolio-detail-overlay">
-                                    <div class="middle-align-wrap">
-                                        <div class="middle-align-cell">
-                                            <h4>Corporate Website</h4>
-                                            <span>Webdesign</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div><!--/portfolio-grid-->
 

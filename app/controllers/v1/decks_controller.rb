@@ -19,6 +19,7 @@ class V1::DecksController < ApplicationController
     deck = Deck.new(
       name: params[:name],
       description: params[:description],
+      format: params[:format],
       user_id: params[:user_id]
     )
     if deck.save

@@ -9,6 +9,7 @@ class Deck < ApplicationRecord
       id: self.id,
       name: self.name,
       description: self.description,
+      format: self.format,
       user: self.user.as_json,
       cards: self.deck_cards.as_json,
       comments: self.comments.as_json

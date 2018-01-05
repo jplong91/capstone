@@ -4,7 +4,7 @@ var HomePage = {
   template: "#home-page",
   data: function() {
     return {
-      message: "Welcome to Vue.js!"
+      example: []
     };
   },
   mounted: function() {},
@@ -16,10 +16,24 @@ var DecksPage = {
   template: "#decks-page",
   data: function() {
     return {
-      message: "Welcome to Vue.js!"
+      decks: []
     };
   },
-  mounted: function() {},
+  mounted: function() {
+    axios
+      .get("v1/decks")
+      .then(
+        function(response) {
+          this.decks = response.data;
+          this.decks.forEach(function(deck) {
+            deck["displayImage"] = deck["cards"][0]["card"]["image_url"];
+          });
+        }.bind(this)
+      )
+      .catch(function(error) {
+        console.log(error);
+      });
+  },
   methods: {},
   computed: {}
 };
