@@ -39,7 +39,17 @@ var DecksPage = {
 };
 
 var CreateDeck = {
-  template: "#create-deck",
+  template: "#create-deck-page",
+  data: function() {
+    return {};
+  },
+  mounted: function() {},
+  methods: {},
+  computed: {}
+};
+
+var CardSearch = {
+  template: "#card-search-page",
   data: function() {
     return {};
   },
@@ -52,7 +62,8 @@ var router = new VueRouter({
   routes: [
     { path: "/", component: HomePage },
     { path: "/decks", component: DecksPage },
-    { path: "/decks/create", component: CreateDeck }
+    { path: "/decks/create", component: CreateDeck },
+    { path: "/card-search", component: CardSearch }
   ]
 });
 
