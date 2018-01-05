@@ -38,10 +38,21 @@ var DecksPage = {
   computed: {}
 };
 
+var CreateDeck = {
+  template: "#create-deck",
+  data: function() {
+    return {};
+  },
+  mounted: function() {},
+  methods: {},
+  computed: {}
+};
+
 var router = new VueRouter({
   routes: [
     { path: "/", component: HomePage },
-    { path: "/decks", component: DecksPage }
+    { path: "/decks", component: DecksPage },
+    { path: "/decks/create", component: CreateDeck }
   ]
 });
 
