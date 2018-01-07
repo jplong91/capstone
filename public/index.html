@@ -816,7 +816,6 @@
             <h1>Card Search</h1>
             <div class="breadcrumb">
                 <a href="#">Home</a> <i class="fa fa-angle-double-right"></i> <a href="#">Card Search</a>
-                
             </div>
         </div>
     </header>
@@ -828,54 +827,48 @@
             <div class="section-content">
                 <div class="row">
                     <div class="col-md-6 col-sm-5">
-                        <h5>Feel free to drop us a line!</h5>
-                        <form action="php/contact-form.php" class="contact-form" id="contactForm" method="post" name="contactform">
+                        <h5>Enter the name of the card</h5>
+                        
 
                             <div class="form-group">
-                                <input class="form-control" id="name" name="name" placeholder="Your Name" type="text" required>
+                                <input class="form-control" id="name" name="name" placeholder="Card Name" type="text" v-model="inputCardName" required>
                             </div>
 
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <input class="form-control" id="email" name="email" placeholder="Email Address" type="email" required>
                             </div>
 
                             <div class="form-group">
                                 <textarea class="form-control" id="message" name="massage" placeholder="Type your message here" rows="5" required></textarea>
-                            </div>
+                            </div> -->
 
                             <div id="contactFormResponse"></div>
 
-                            <button id="cfsubmit" type="submit" class="btn btn-dark btn-block contact-submit">Give us a shout</button>
+                            <button id="cfsubmit" type="submit" class="btn btn-dark btn-block contact-submit" v-on:click="submit()">Search</button>
 
-                        </form>
+                        
                     </div>
                     <div class="col-md-6 col-sm-7">
-                        <h5>Find us on Google map</h5>
+                        <h5>Card</h5>
                         <div class="google-map">
-                            <div id="map"></div>
+                            <div id="map">
+                                <img v-bind:src="cardImage" alt="">
+                            </div>
                         </div>
 
                         <div class="row contact-info-wrap">
                             <div class="col-sm-6">
                                 <div>
-                                    <h5>Office Address</h5>
-                                    <address class="contact-info">
-                                        <span>590 Castro St</span><br>
-                                        <span>Mountain View</span>,
-                                        <span>CA </span> -
-                                        <span>94041</span><br>
-                                        <span>United States</span>
-                                    </address>
+                                    
                                 </div>
 
                             </div>
                             <div class="col-sm-6">
                                 <div>
-                                    <h5>Contact Information</h5>
+                                    <h5>{{ cardName }}</h5>
                                     <div class="contact-info">
-                                        Local: ( 33 1) 42 68 53 00<br>
-                                        Mobile: ( 33 1) 42 68 53 01<br>
-                                        info@themewagon.com
+                                        {{ cardType }}<br>
+                                        {{ cardManaCost }}<br>
                                     </div>
                                 </div>
                             </div>

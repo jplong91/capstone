@@ -51,10 +51,37 @@ var CreateDeck = {
 var CardSearch = {
   template: "#card-search-page",
   data: function() {
-    return {};
+    return {
+      inputCardName: "Island",
+      cardName: "Island",
+      cardImage:
+        "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=439602&type=card",
+      cardType: "Land",
+      cardManaCost: "None"
+    };
   },
   mounted: function() {},
-  methods: {},
+  methods: {
+    submit: function() {
+      axios
+        .get(
+          "https://api.magicthegathering.io/v1/cards?name=" + this.inputCardName
+        )
+        .then(
+          function(response) {
+            this.cardName = response.data["cards"][0]["name"];
+            this.cardImage = response.data["cards"][0]["imageUrl"];
+            this.cardType = response.data["cards"][0]["type"];
+            this.cardManaCost = response.data["cards"][0]["manaCost"];
+          }.bind(this)
+        )
+        .catch(
+          function(error) {
+            this.errors = error.response.data.errors;
+          }.bind(this)
+        );
+    }
+  },
   computed: {}
 };
 
