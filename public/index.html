@@ -714,7 +714,7 @@
             <div class="container">
                 <h1>Decks</h1>
                 <div class="breadcrumb">
-                    <a href="#">Home</a> <i class="fa fa-angle-double-right"></i> <a href="#">Decks</a>
+                    <a href="/#/">Home</a> <i class="fa fa-angle-double-right"></i> <a href="#">Decks</a>
                     
                 </div>
             </div>
@@ -754,7 +754,7 @@
                     <ul id="da-thumbs" class="da-thumbs isotope">
 
                         <li class="design" v-for="deck in decks" data-category="deck.format">
-                            <a href="portfolio__single.html">
+                            <a v-bind:href="/decks/ + deck.id">
                                 <img v-bind:src="deck.displayImage" class="decks-page-indiv"/>
                                 <div class="portfolio-detail-overlay">
                                     <div class="middle-align-wrap">
@@ -804,8 +804,36 @@
     </div>
 </template>
 
+<template id="single-deck-page">
+  
+</template>
+
 <template id="create-deck-page">
-    
+    <div>
+    <header id="header" class="home-parallax home-fade dark-bg header-inner">
+        <div class="color-overlay"></div>
+        <div class="container">
+            <h1>Create Deck</h1>
+            <div class="breadcrumb">
+                <a href="#">Home</a> <i class="fa fa-angle-double-right"></i> <a href="#">Create Deck</a>
+            </div>
+        </div>
+    </header>
+    <section class="section">
+        <div class="container">
+            <h4>Deck Name</h4>
+            <input class="form-control" type="text" placeholder="Black-White Vampires" v-model="name">
+            <hr>
+            <h4>Deck Description</h4>
+            <textarea class="form-control" rows="6" placeholder="This Standard deck uses many of the new Vampire cards from the Ixalan block. The deck has a low mana curve with a focus on early aggression. Lategame is not a strong suit of the deck" v-model="description"></textarea>
+            <hr>
+            <h4>Format</h4>
+            <input class="form-control" type="text" placeholder="Standard, Modern, etc." v-model="format">
+            <hr>
+            <button class="btn btn-dark" v-on:click="create()"><i class="ion-social-buffer"></i> Create deck - start adding cards</button>
+        </div>
+    </section>
+    </div>
 </template>
 
 <template id="card-search-page">
@@ -815,7 +843,7 @@
         <div class="container">
             <h1>Card Search</h1>
             <div class="breadcrumb">
-                <a href="#">Home</a> <i class="fa fa-angle-double-right"></i> <a href="#">Card Search</a>
+                <a href="/#/">Home</a> <i class="fa fa-angle-double-right"></i> <a href="#">Card Search</a>
             </div>
         </div>
     </header>
@@ -831,20 +859,20 @@
                         
 
                             <div class="form-group">
-                                <input class="form-control" id="name" name="name" placeholder="Card Name" type="text" v-model="inputCardName" required>
+                                <input class="form-control" id="name" name="name" placeholder="Island" type="text" v-model="inputCardName" required>
                             </div>
-
-                            <!-- <div class="form-group">
-                                <input class="form-control" id="email" name="email" placeholder="Email Address" type="email" required>
-                            </div>
-
-                            <div class="form-group">
-                                <textarea class="form-control" id="message" name="massage" placeholder="Type your message here" rows="5" required></textarea>
-                            </div> -->
-
-                            <div id="contactFormResponse"></div>
 
                             <button id="cfsubmit" type="submit" class="btn btn-dark btn-block contact-submit" v-on:click="submit()">Search</button>
+
+                            <hr>
+
+                            <h4>{{ cardName }}</h4>
+                            <p>{{ cardText }}</p>
+                            <p>{{ cardFlavor }}</p>
+
+                            <hr>
+                            <p>{{ cardSetName }}</p>
+                            <p>Artist: {{ cardArtist }}</p>
 
                         
                     </div>
@@ -853,24 +881,6 @@
                         <div class="google-map">
                             <div id="map">
                                 <img v-bind:src="cardImage" alt="">
-                            </div>
-                        </div>
-
-                        <div class="row contact-info-wrap">
-                            <div class="col-sm-6">
-                                <div>
-                                    
-                                </div>
-
-                            </div>
-                            <div class="col-sm-6">
-                                <div>
-                                    <h5>{{ cardName }}</h5>
-                                    <div class="contact-info">
-                                        {{ cardType }}<br>
-                                        {{ cardManaCost }}<br>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

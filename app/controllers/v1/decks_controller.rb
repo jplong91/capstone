@@ -20,7 +20,8 @@ class V1::DecksController < ApplicationController
       name: params[:name],
       description: params[:description],
       format: params[:format],
-      user_id: params[:user_id]
+      user_id: 1 # This is temporary
+      # user_id: params[:user_id]
     )
     if deck.save
       render json: deck.as_json, status: :created
