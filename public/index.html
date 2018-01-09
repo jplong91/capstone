@@ -100,36 +100,16 @@
             <ul class="dropdown-menu">
 
                 <li>
-                    <a href="/#/decks/create">Create Deck</a>
+                    <a href="/#/decks/create"><i class="ion-paintbucket"></i> Create Deck</a>
                 </li>
 
                 <li>
-                    <a href="/#/decks">View Decks</a>
+                    <a href="/#/decks"><i class="ion-social-buffer"></i> View Decks</a>
                 </li>
 
                 <li>
-                    <a href="/#/card-search">Card Search</a>
+                    <a href="/#/card-search"> <i class="ion-ios-compose"></i> Card Search</a>
                 </li>
-
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gallery</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="gallery__3_columns.html">3 Columns</a></li>
-                        <li><a href="gallery__4_columns.html">4 Columns</a></li>
-                        <li><a href="gallery__5_columns.html">5 Columns</a></li>
-                    </ul>
-                </li>
-
-                <li><a href="faq.html">FAQ</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="contact__classic_map.html">Classic Style</a></li>
-                        <li><a href="contact__full_width_map.html">Full Width Map</a></li>
-                    </ul>
-                </li>
-                <li><a href="404.html">404 Page</a></li>
-
             </ul>
         </li>
 
@@ -379,7 +359,7 @@
             <div class="container">
                 <div class="call-to-action">
                     <div class="cta-text">Ready to build a deck?</div>
-                    <a class="btn btn-default-o" href="#">Start Building</a>
+                    <a class="btn btn-default-o" href="/decks/create">Start Building</a>
                 </div>
             </div><!-- container -->
         </div>
@@ -754,7 +734,7 @@
                     <ul id="da-thumbs" class="da-thumbs isotope">
 
                         <li class="design" v-for="deck in decks" data-category="deck.format">
-                            <a v-bind:href="/decks/ + deck.id">
+                            <a v-bind:href="'/#/decks/' + deck.id">
                                 <img v-bind:src="deck.displayImage" class="decks-page-indiv"/>
                                 <div class="portfolio-detail-overlay">
                                     <div class="middle-align-wrap">
