@@ -43,7 +43,8 @@ var SingleDeckPage = {
   template: "#single-deck-page",
   data: function() {
     return {
-      deck: []
+      deck: [],
+      cards: []
     };
   },
   mounted: function() {
@@ -52,6 +53,8 @@ var SingleDeckPage = {
       .then(
         function(response) {
           this.deck = response.data;
+          this.cards = response.data["cards"];
+          console.log(this.cards);
         }.bind(this)
       )
       .catch(function(error) {
@@ -64,6 +67,41 @@ var SingleDeckPage = {
 
 var CreateDeck = {
   template: "#create-deck-page",
+  data: function() {
+    return {
+      name: "",
+      description: "",
+      format: "",
+      errors: []
+    };
+  },
+  mounted: function() {},
+  methods: {
+    create: function() {
+      var params = {
+        name: this.name,
+        description: this.description,
+        format: this.format
+      };
+      axios
+        .post("/v1/decks", params)
+        .then(function(response) {
+          console.log(response);
+          // router.push("/#/");
+        })
+        .catch(
+          function(error) {
+            this.errors = error.response.data.errors;
+            console.log(this.errors);
+          }.bind(this)
+        );
+    }
+  },
+  computed: {}
+};
+
+var CreateDeckAddCards = {
+  template: "#create-deck-add-cards-page",
   data: function() {
     return {
       name: "",
@@ -145,9 +183,10 @@ var CardSearch = {
 var router = new VueRouter({
   routes: [
     { path: "/", component: HomePage },
+    { path: "/decks/create/add-cards", component: CreateDeckAddCards },
+    { path: "/decks/create", component: CreateDeck },
     { path: "/decks/:id", component: SingleDeckPage },
     { path: "/decks", component: DecksPage },
-    { path: "/decks/create", component: CreateDeck },
     { path: "/card-search", component: CardSearch }
   ]
 });

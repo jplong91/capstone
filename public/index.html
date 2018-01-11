@@ -108,7 +108,7 @@
                 </li>
 
                 <li>
-                    <a href="/#/card-search"> <i class="ion-ios-compose"></i> Card Search</a>
+                    <a href="/#/card-search"><i class="ion-ios-compose"></i> Card Search</a>
                 </li>
             </ul>
         </li>
@@ -694,7 +694,7 @@
             <div class="container">
                 <h1>Decks</h1>
                 <div class="breadcrumb">
-                    <a href="/#/">Home</a> <i class="fa fa-angle-double-right"></i> <a href="#">Decks</a>
+                    <a href="/#/">Home</a> <i class="fa fa-angle-double-right"></i> <a href="/#/decks">Decks</a>
                     
                 </div>
             </div>
@@ -759,21 +759,9 @@
                                     </div>
                                 </div>
                             </a>
-                        </li>
-
-                        <li data-category="wordpress" class="wordpress">
-                            <a href="portfolio__single.html">
-                                <img src="assets/images/work/03.jpg" alt="" />
-                                <div class="portfolio-detail-overlay">
-                                    <div class="middle-align-wrap">
-                                        <div class="middle-align-cell">
-                                            <h4>Corporate Website</h4>
-                                            <span>Webdesign</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
                         </li> -->
+
+                        
                     </ul>
                 </div><!--/portfolio-grid-->
 
@@ -785,7 +773,53 @@
 </template>
 
 <template id="single-deck-page">
-  
+    <div>
+        <header id="header" class="home-parallax home-fade dark-bg header-inner">
+            <div class="color-overlay"></div>
+            <div class="container">
+                <h1>{{ deck.name }}</h1>
+                <div class="breadcrumb">
+                    <a href="/#/">Home</a> <i class="fa fa-angle-double-right"></i> <a href="/#/decks">Decks</a> <i class="fa fa-angle-double-right"></i> <span>{{ deck.name }}</span>
+                    
+                </div>
+            </div>
+        </header>
+       <section id="blog-grid" class="section blog blog-grid">
+        <div class="container">
+
+                <div class="row">
+
+                    <div class="col-sm-6 col-md-6">
+                        <h5>Cards</h5>
+                        <ul class="plain-list">
+                            <li v-for="card in cards">{{ card.card.name }}</li>
+                        </ul>
+                    </div>
+
+                    <!-- <div class="col-sm-6 col-md-6">
+                        <h5>Ordered</h5>
+                        <ol class="plain-list">
+                            <li>Lorem ipsum dolor sit amet</li>
+                            <li>Consectetur adipiscing elit</li>
+                            <li>Nulla volutpat aliquam velit
+                                <ul>
+                                    <li>Phasellus iaculis neque</li>
+                                    <li>Ac tristique libero volutpat at</li>
+                                </ul>
+                            </li>
+                            <li>Eget porttitor lorem</li>
+                        </ol>
+                    </div> -->
+
+                </div><!-- .row -->
+                
+            </div>
+
+        </div><!-- .row -->
+
+        </div>
+        </section>
+    </div>
 </template>
 
 <template id="create-deck-page">
@@ -813,6 +847,12 @@
             <button class="btn btn-dark" v-on:click="create()"><i class="ion-social-buffer"></i> Create deck - start adding cards</button>
         </div>
     </section>
+    </div>
+</template>
+
+<template id="create-deck-add-cards-page">
+    <div>
+    
     </div>
 </template>
 
