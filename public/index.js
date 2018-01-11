@@ -54,7 +54,6 @@ var SingleDeckPage = {
         function(response) {
           this.deck = response.data;
           this.cards = response.data["cards"];
-          console.log(this.cards);
         }.bind(this)
       )
       .catch(function(error) {
@@ -72,7 +71,8 @@ var CreateDeck = {
       name: "",
       description: "",
       format: "",
-      errors: []
+      errors: [],
+      deck: []
     };
   },
   mounted: function() {},
@@ -85,10 +85,12 @@ var CreateDeck = {
       };
       axios
         .post("/v1/decks", params)
-        .then(function(response) {
-          console.log(response);
-          // router.push("/#/");
-        })
+        .then(
+          function(response) {
+            this.deck = response.data;
+            router.push("/#/decks/" + this.deck.id + "/add-cards");
+          }.bind(this)
+        )
         .catch(
           function(error) {
             this.errors = error.response.data.errors;
@@ -100,34 +102,60 @@ var CreateDeck = {
   computed: {}
 };
 
-var CreateDeckAddCards = {
-  template: "#create-deck-add-cards-page",
+var AddCards = {
+  template: "#add-cards-page",
   data: function() {
     return {
-      name: "",
-      description: "",
-      format: "",
+      inputCardName: "",
+      cardName: "Island",
+      cardImage:
+        "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=439602&type=card",
+      cardType: "Land",
+      cardManaCost: "",
+      cardText: "",
+      cardFlavor: "",
+      cardSetName: "Unstable",
+      cardArtist: "John Avon",
+
+      deck: [],
+      cards: [],
       errors: []
     };
   },
-  mounted: function() {},
+  mounted: function() {
+    axios
+      .get("/v1/decks/" + this.$route.params.id)
+      .then(
+        function(response) {
+          this.deck = response.data;
+          this.cards = response.data["cards"];
+        }.bind(this)
+      )
+      .catch(function(error) {
+        console.log(error);
+      });
+  },
   methods: {
-    create: function() {
-      var params = {
-        name: this.name,
-        description: this.description,
-        format: this.format
-      };
+    submit: function() {
       axios
-        .post("/v1/decks", params)
-        .then(function(response) {
-          console.log(response);
-          // router.push("/#/");
-        })
+        .get(
+          "https://api.magicthegathering.io/v1/cards?name=" + this.inputCardName
+        )
+        .then(
+          function(response) {
+            this.cardName = response.data["cards"][0]["name"];
+            this.cardImage = response.data["cards"][0]["imageUrl"];
+            this.cardType = response.data["cards"][0]["type"];
+            this.cardManaCost = response.data["cards"][0]["manaCost"];
+            this.cardText = response.data["cards"][0]["text"];
+            this.cardFlavor = response.data["cards"][0]["flavor"];
+            this.cardArtist = response.data["cards"][0]["artist"];
+            this.cardSetName = response.data["cards"][0]["setName"];
+          }.bind(this)
+        )
         .catch(
           function(error) {
             this.errors = error.response.data.errors;
-            console.log(this.errors);
           }.bind(this)
         );
     }
@@ -183,8 +211,8 @@ var CardSearch = {
 var router = new VueRouter({
   routes: [
     { path: "/", component: HomePage },
-    { path: "/decks/create/add-cards", component: CreateDeckAddCards },
     { path: "/decks/create", component: CreateDeck },
+    { path: "/decks/:id/add-cards", component: AddCards },
     { path: "/decks/:id", component: SingleDeckPage },
     { path: "/decks", component: DecksPage },
     { path: "/card-search", component: CardSearch }
