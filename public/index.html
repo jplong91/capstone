@@ -787,6 +787,12 @@
        <section id="blog-grid" class="section blog blog-grid">
         <div class="container">
 
+            <div class="row">
+                <button type="button" class="btn btn-success btn-circle" v-on:click="'/#/decks/' + deck.id + '/edit'">Edit Deck</button>  
+            </div>
+
+            <hr>
+
                 <div class="row">
 
                     <div class="col-sm-6 col-md-6">
@@ -850,7 +856,7 @@
     </div>
 </template>
 
-<template id="add-cards-page">
+<template id="edit-deck-page">
     <div>
         <header id="header" class="home-parallax home-fade dark-bg header-inner">
             <div class="color-overlay"></div>
@@ -876,7 +882,7 @@
                                 <input class="form-control" id="name" name="name" placeholder="Island" type="text" v-model="inputCardName" required>
                             </div>
 
-                            <button id="cfsubmit" type="submit" class="btn btn-dark btn-block contact-submit" v-on:click="submit()">Search</button>
+                            <button id="cfsubmit" type="submit" class="btn btn-dark btn-block contact-submit" v-on:click="search()"><i class="ion-search"></i> Search</button>
 
                             <hr>
 
@@ -906,7 +912,9 @@
         <div class="container">
             <hr>
             <div class="row">
-                <h5>Add {{ cardName }} to your deck?</h5><h5>Quantity: <input type="text"></h5>
+                <h5>Add {{ cardName }} to your deck?</h5>
+                <h5>Quantity: <input type="text" v-model="quantity"></h5>
+                <button id="cfsubmit" type="submit" class="btn btn-dark" v-on:click="addCardToDeck()"><i class="ion-social-buffer"></i> Add To Deck</button>
             </div>
             <hr>
 
@@ -915,7 +923,7 @@
                     <div class="col-sm-6 col-md-6">
                         <h5>Cards</h5>
                         <ul class="plain-list">
-                            <li v-for="card in cards">{{ card.card.name }}</li>
+                            <li v-for="card in cards">{{ card.card.name }}  x{{ card.quantity }}</li>
                         </ul>
                     </div>
 
@@ -971,7 +979,7 @@
                                 <input class="form-control" id="name" name="name" placeholder="Island" type="text" v-model="inputCardName" required>
                             </div>
 
-                            <button id="cfsubmit" type="submit" class="btn btn-dark btn-block contact-submit" v-on:click="submit()">Search</button>
+                            <button id="cfsubmit" type="submit" class="btn btn-dark btn-block contact-submit" v-on:click="search()"><i class="ion-search"></i> Search</button>
 
                             <hr>
 

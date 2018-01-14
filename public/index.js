@@ -60,7 +60,9 @@ var SingleDeckPage = {
         console.log(error);
       });
   },
-  methods: {},
+  methods: {
+    pushEditPage: function() {}
+  },
   computed: {}
 };
 
@@ -102,8 +104,8 @@ var CreateDeck = {
   computed: {}
 };
 
-var AddCards = {
-  template: "#add-cards-page",
+var EditDeck = {
+  template: "#edit-deck-page",
   data: function() {
     return {
       inputCardName: "",
@@ -112,14 +114,20 @@ var AddCards = {
         "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=439602&type=card",
       cardType: "Land",
       cardManaCost: "",
+      cardCMC: null,
+      cardApiRf: "",
+
       cardText: "",
       cardFlavor: "",
+      cardSetShorthand: "",
       cardSetName: "Unstable",
       cardArtist: "John Avon",
 
       deck: [],
       cards: [],
-      errors: []
+      errors: [],
+
+      quantity: null
     };
   },
   mounted: function() {
@@ -136,7 +144,7 @@ var AddCards = {
       });
   },
   methods: {
-    submit: function() {
+    search: function() {
       axios
         .get(
           "https://api.magicthegathering.io/v1/cards?name=" + this.inputCardName
@@ -151,11 +159,43 @@ var AddCards = {
             this.cardFlavor = response.data["cards"][0]["flavor"];
             this.cardArtist = response.data["cards"][0]["artist"];
             this.cardSetName = response.data["cards"][0]["setName"];
+            this.cardSetShorthand = response.data["cards"][0]["set"];
+            this.cardCMC = response.data["cards"][0]["cmc"];
+            this.cardApiRf = response.data["cards"][0]["id"];
           }.bind(this)
         )
         .catch(
           function(error) {
             this.errors = error.response.data.errors;
+          }.bind(this)
+        );
+    },
+    addCardToDeck: function() {
+      var params = {
+        /* Card params */
+        api_rf: this.cardApiRf,
+        name: this.cardName,
+        mana_cost: this.cardManaCost,
+        cmc: this.cardCMC,
+        card_type: this.cardType,
+        set: this.cardSetShorthand,
+        image_url: this.cardImage,
+
+        /* DeckCard params */
+        deck_id: this.deck.id,
+        quantity: this.quantity
+      };
+      axios
+        .post("/v1/cards", params)
+        .then(
+          function(response) {
+            this.cards.push(response.data);
+          }.bind(this)
+        )
+        .catch(
+          function(error) {
+            this.errors = error.response.data.errors;
+            console.log(this.errors);
           }.bind(this)
         );
     }
@@ -181,7 +221,7 @@ var CardSearch = {
   },
   mounted: function() {},
   methods: {
-    submit: function() {
+    search: function() {
       axios
         .get(
           "https://api.magicthegathering.io/v1/cards?name=" + this.inputCardName
@@ -212,7 +252,7 @@ var router = new VueRouter({
   routes: [
     { path: "/", component: HomePage },
     { path: "/decks/create", component: CreateDeck },
-    { path: "/decks/:id/add-cards", component: AddCards },
+    { path: "/decks/:id/edit", component: EditDeck },
     { path: "/decks/:id", component: SingleDeckPage },
     { path: "/decks", component: DecksPage },
     { path: "/card-search", component: CardSearch }
