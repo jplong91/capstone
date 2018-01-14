@@ -254,6 +254,98 @@ var CardSearch = {
   computed: {}
 };
 
+var CreateTeam = {
+  template: "#create-team-page",
+  data: function() {
+    return {
+      name: "",
+      bio: "",
+      teamInfo: []
+    };
+  },
+  mounted: function() {},
+  methods: {
+    create: function() {
+      var params = {
+        team_name: this.name,
+        team_bio: this.bio
+      };
+      axios
+        .post("/v1/teams", params)
+        .then(
+          function(response) {
+            this.teamInfo = response.data;
+          }.bind(this)
+        )
+        .catch(
+          function(error) {
+            this.errors = error.response.data.errors;
+            console.log(this.errors);
+          }.bind(this)
+        );
+    }
+  },
+  computed: {}
+};
+
+var TeamsPage = {
+  template: "#teams-page",
+  data: function() {
+    return {
+      decks: [],
+      errors: []
+    };
+  },
+  mounted: function() {
+    axios
+      .get("v1/decks")
+      .then(
+        function(response) {
+          this.decks = response.data;
+          this.decks.forEach(function(deck) {
+            deck["displayImage"] = deck["cards"][0]["card"]["image_url"];
+          });
+        }.bind(this)
+      )
+      .catch(function(error) {
+        console.log(error);
+      });
+  },
+  methods: {},
+  computed: {}
+};
+
+var Login = {
+  template: "#login-page",
+  data: function() {
+    return {
+      email: "",
+      password: "",
+      errors: []
+    };
+  },
+  mounted: function() {},
+  methods: {},
+  computed: {}
+};
+
+var Signup = {
+  template: "#signup-page",
+  data: function() {
+    return {
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      passwordConfirmation: "",
+      username: ""
+    };
+  },
+  mounted: function() {},
+  methods: {},
+  computed: {}
+};
+
 var router = new VueRouter({
   routes: [
     { path: "/", component: HomePage },
@@ -261,8 +353,15 @@ var router = new VueRouter({
     { path: "/decks/:id/edit", component: EditDeck },
     { path: "/decks/:id", component: SingleDeckPage },
     { path: "/decks", component: DecksPage },
+    { path: "/teams/create", component: CreateTeam },
+    { path: "/teams", component: TeamsPage },
+    { path: "/login", component: Login },
+    { path: "/signup", component: Signup },
     { path: "/card-search", component: CardSearch }
-  ]
+  ],
+  scrollBehavior: function(to, from, savedPosition) {
+    return { x: 0, y: 0 };
+  }
 });
 
 var app = new Vue({

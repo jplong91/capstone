@@ -1136,6 +1136,42 @@ blockquote p {
   margin: 0 10px;
 }
 
+.header-inner2 {
+  padding-top: 200px;
+  background-color: black;
+  background-image: url(../images/backgrounds/bg-testimonial2.jpg);
+  background-size: cover;
+  text-align: center;
+}
+.header-inner2 .breadcrumb {
+  background-color: transparent;
+  color: rgba(254, 254, 255, 0.7);
+}
+.header-inner2 .breadcrumb a {
+  color: inherit;
+}
+.header-inner2 .breadcrumb i {
+  margin: 0 10px;
+}
+
+.header-inner3 {
+  padding-top: 200px;
+  background-color: black;
+  background-image: url(../images/backgrounds/bg-testimonial3.jpg);
+  background-size: cover;
+  text-align: center;
+}
+.header-inner3 .breadcrumb {
+  background-color: transparent;
+  color: rgba(254, 254, 255, 0.7);
+}
+.header-inner3 .breadcrumb a {
+  color: inherit;
+}
+.header-inner3 .breadcrumb i {
+  margin: 0 10px;
+}
+
 .flexslider {
   margin: 0;
   border: 0;

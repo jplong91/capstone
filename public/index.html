@@ -108,7 +108,7 @@
 
 
                 <li>
-                    <a href="/#/card-search"><i class="ion-ios-compose"></i> Card Search</a>
+                    <a href="/#/card-search"><i class="ion-edit"></i> Card Search</a>
                 </li>
             </ul>
         </li>
@@ -117,10 +117,10 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Teams</a>
             <ul class="dropdown-menu">
                 <li>
-                    <a href="/#/"><i class="ion-person-stalker"></i> View Teams (DNW)</a>
+                    <a href="/#/teams"><i class="ion-ios-people"></i> View Teams</a>
                 </li>
                 <li>
-                    <a href="/#/"><i class="ion-android-bus"></i> Create Team (DNW)</a>
+                    <a href="/#/teams/create"><i class="ion-android-bus"></i> Create Team</a>
                 </li>
             </ul>
         </li>
@@ -128,9 +128,9 @@
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Login</span></a>
             <ul class="dropdown-menu">
-                <li><a href="icons.html"><i class="ion-power"></i> Login (DNW)</a></li>
-                <li><a href="typography.html"><i class="ion-ios-paperplane"></i> Logout (DNW)</a></li>
-                <li><a href="buttons.html"><i class="ion-ios-refresh-empty"></i> Signup (DNW)</a></li>
+                <li><a href="/#/login"><i class="ion-power"></i> Login</a></li>
+                <li><a href="/#/logout"><i class="ion-ios-paperplane"></i> Logout</a></li>
+                <li><a href="/#/signup"><i class="ion-android-hand"></i> Signup</a></li>
             </ul>
         </li>
 
@@ -263,7 +263,7 @@
 
                         <!-- our-process-image -->
                         <div class="our-process-image left">
-                            <span class="ion-person-stalker"></span>
+                            <span class="ion-ios-people"></span>
                         </div>
 
                         <div class="our-process-text right">
@@ -306,7 +306,7 @@
             <div class="container">
                 <div class="call-to-action">
                     <div class="cta-text">Ready to build a deck?</div>
-                    <a class="btn btn-default-o" href="/decks/create">Start Building</a>
+                    <a class="btn btn-default-o" href="/#/decks/create">Start Building</a>
                 </div>
             </div><!-- container -->
         </div>
@@ -320,7 +320,7 @@
                 <!---->
                 <header class="section-heading">
                     <h2>Recent Projects</h2>
-                    <span>Successful projects,happy clients and great results</span>
+                    <span>Successful projects, happy clients and great results</span>
                 </header>
                 <!---->
 
@@ -641,8 +641,7 @@
             <div class="container">
                 <h1>Decks</h1>
                 <div class="breadcrumb">
-                    <a href="/#/">Home</a> <i class="fa fa-angle-double-right"></i> <a href="/#/decks">Decks</a>
-                    
+                    <a href="/#/">Home</a> <i class="fa fa-angle-double-right"></i> <span>Decks</span>
                 </div>
             </div>
         </header>
@@ -782,7 +781,7 @@
         <div class="container">
             <h1>Create Deck</h1>
             <div class="breadcrumb">
-                <a href="#">Home</a> <i class="fa fa-angle-double-right"></i> <a href="#">Create Deck</a>
+                <a href="/#/">Home</a> <i class="fa fa-angle-double-right"></i> <span>Create Deck</span>
             </div>
         </div>
     </header>
@@ -810,7 +809,7 @@
             <div class="container">
                 <h1>{{ deck.name }}</h1>
                 <div class="breadcrumb">
-                    <a href="/#/">Home</a> <i class="fa fa-angle-double-right"></i> <a href="/#/decks">Decks</a> <i class="fa fa-angle-double-right"></i> <a v-bind:href="'/#/decks/' + deck.id">{{ deck.name }}</a>
+                    <a href="/#/">Home</a> <i class="fa fa-angle-double-right"></i> <a href="/#/decks">Decks</a> <i class="fa fa-angle-double-right"></i> <a v-bind:href="'/#/decks/' + deck.id">{{ deck.name }}</a> <i class="fa fa-angle-double-right"></i><span> Edit</span>
                 </div>
             </div>
         </header>
@@ -952,5 +951,230 @@
         </div>
     </section>
     <!-- /Contact-us -->
+    </div>
+</template>
+
+<template id="login-page">
+    <div>
+    <header id="header" class="home-parallax home-fade dark-bg header-inner2">
+        <div class="color-overlay"></div>
+        <div class="container">
+            <h1>Login</h1>
+            <div class="breadcrumb">
+                <a href="/#/">Home</a> <i class="fa fa-angle-double-right"></i> <span>Login</span>
+            </div>
+        </div>
+    </header>
+    <section class="section">
+        <div class="container">
+            <h4>Email</h4>
+            <input class="form-control" type="text" placeholder="JohnDoe@email.com" v-model="email">
+            <hr>
+            <h4>Password</h4>
+            <input class="form-control" type="password" rows="6" v-model="password"></input>
+            <hr>
+            <button class="btn btn-dark" v-on:click="login()"><i class="ion-power"></i> Login</button>
+        </div>
+    </section>
+    </div>
+</template>
+
+<template id="signup-page">
+    <div>
+    <header id="header" class="home-parallax home-fade dark-bg header-inner2">
+        <div class="color-overlay"></div>
+        <div class="container">
+            <h1>Signup</h1>
+            <div class="breadcrumb">
+                <a href="/#/">Home</a> <i class="fa fa-angle-double-right"></i> <span>Signup</span>
+            </div>
+        </div>
+    </header>
+    <section class="section">
+        <div class="container">
+            <h3>Fill in all fields to create an account</h3>
+            <hr>
+            <h4>First Name</h4>
+            <input class="form-control" type="text" placeholder="John" v-model="firstName">
+            <h4>Last Name</h4>
+            <input class="form-control" type="text" rows="6" placeholder="Doe" v-model="lastName"></input>
+            <hr>
+            <h4>Email</h4>
+            <input class="form-control" type="text" placeholder="JohnDoe@email.com" v-model="email">
+            <h4>Password</h4>
+            <input class="form-control" type="password" v-model="password">
+            <h4>Password Confirmation</h4>
+            <input class="form-control" type="password" v-model="passwordConfirmation">
+            <hr>
+            <h4>Username</h4>
+            <input class="form-control" type="text" placeholder="iLoveMagic" v-model="username">
+            <hr>
+            <button class="btn btn-dark" v-on:click="create()"><i class="ion-android-hand"></i> Create Account</button>
+        </div>
+    </section>
+    </div>
+</template>
+
+<template id="create-team-page">
+    <div>
+    <header id="header" class="home-parallax home-fade dark-bg header-inner3">
+        <div class="color-overlay"></div>
+        <div class="container">
+            <h1>Create Team</h1>
+            <div class="breadcrumb">
+                <a href="/#/">Home</a> <i class="fa fa-angle-double-right"></i> <span>Create Team</span>
+            </div>
+        </div>
+    </header>
+    <section class="section">
+        <div class="container">
+            <h4>Team Name</h4>
+            <input class="form-control" type="text" placeholder="Magic Gentlemen" v-model="name">
+            <hr>
+            <h4>Team Bio</h4>
+            <textarea class="form-control" rows="6" placeholder="We're just a bunch of friends from a lone suburb of Chicago looking to improve on our magic skills. We play mainly standard and limited, and we're always looking to hone our skills at big events in the area!" v-model="bio"></textarea>
+            <hr>
+            <button class="btn btn-dark" v-on:click="create()"><i class="ion-android-bus"></i> Create Team</button>
+        </div>
+    </section>
+    </div>
+</template>
+
+<template id="teams-page">
+    <div>
+    <header id="header" class="home-parallax home-fade dark-bg header-inner3">
+        <div class="color-overlay"></div>
+        <div class="container">
+            <h1>Teams</h1>
+            <div class="breadcrumb">
+                <a href="/#/">Home</a> <i class="fa fa-angle-double-right"></i> <span> Teams</span>
+            </div>
+        </div>
+    </header>
+
+    <section id="blog-grid" class="section blog blog-grid">
+        <div class="container">
+             <div id="blogContent" class="section-content">
+        <div class="row">
+            <div class="col-sm-6 col-md-6">
+                <div class="blog-post">
+                    <header>
+                        <h4 class="date">29<br>Aug</h4>
+                        <div class="blog-element">
+                            <img class="img-responsive" src="assets/images/blog/1.jpg" alt="">
+                        </div>
+                    </header>
+                    <div class="blog-content">
+                        <h4><a href="#">Why Billionaires join Gates Giving Pledge</a></h4>
+                        <div class="post-meta">
+                            <span>By <a href="#">Prium</a></span>
+                            <span><a href="#">30 Comments</a></span>
+                        </div>
+                        <p>They signed the Giving Pledge -- an effort started in 2010 by ...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <div class="blog-post">
+                    <header>
+                        <h4 class="date">29<br>Aug</h4>
+                        <div class="blog-element">
+                            <img class="img-responsive" src="assets/images/blog/2.jpg" alt="">
+                        </div>
+                    </header>
+                    <div class="blog-content">
+                        <h4><a href="#">Web agency template released</a></h4>
+                        <div class="post-meta">
+                            <span>By <a href="#">John Snow</a></span>
+                            <span><a href="#">30 Comments</a></span>
+                        </div>
+                        <p>Data from the Centers for Medicare Medicaid Services include payments and ..</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-6">
+                <div class="blog-post">
+                    <header>
+                        <h4 class="date">29<br>Aug</h4>
+                        <div class="blog-element">
+                            <img class="img-responsive" src="assets/images/blog/2.jpg" alt="">
+                        </div>
+                    </header>
+                    <div class="blog-content">
+                        <h4><a href="#">Web agency template released</a></h4>
+                        <div class="post-meta">
+                            <span>By <a href="#">John Snow</a></span>
+                            <span><a href="#">30 Comments</a></span>
+                        </div>
+                        <p>Data from the Centers for Medicare Medicaid Services include payments and ..</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <div class="blog-post">
+                    <header>
+                        <h4 class="date">29<br>Aug</h4>
+                        <div class="blog-element">
+                            <img class="img-responsive" src="assets/images/blog/3.jpg" alt="">
+                        </div>
+                    </header>
+                    <div class="blog-content">
+                        <h4><a href="#">A companytour to lake powel, arizona</a></h4>
+                        <div class="post-meta">
+                            <span>By <a href="#">Tailor</a></span>
+                            <span><a href="#">30 Comments</a></span>
+                        </div>
+                        <p>Lake Powell is a reservoir on the Colorado River, straddling the border between ...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div class="row">
+             <div class="col-sm-6 col-md-6">
+                 <div class="blog-post">
+                     <header>
+                         <h4 class="date">29<br>Aug</h4>
+                         <div class="blog-element">
+                             <img class="img-responsive" src="assets/images/blog/1.jpg" alt="">
+                         </div>
+                     </header>
+                     <div class="blog-content">
+                         <h4><a href="#">Why Billionaires join Gates Giving Pledge</a></h4>
+                         <div class="post-meta">
+                             <span>By <a href="#">Prium</a></span>
+                             <span><a href="#">30 Comments</a></span>
+                         </div>
+                         <p>They signed the Giving Pledge -- an effort started in 2010 by ...</p>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-sm-6 col-md-6">
+                 <div class="blog-post">
+                     <header>
+                         <h4 class="date">29<br>Aug</h4>
+                         <div class="blog-element">
+                             <img class="img-responsive" src="assets/images/blog/2.jpg" alt="">
+                         </div>
+                     </header>
+                     <div class="blog-content">
+                         <h4><a href="#">Web agency template released</a></h4>
+                         <div class="post-meta">
+                             <span>By <a href="#">John Snow</a></span>
+                             <span><a href="#">30 Comments</a></span>
+                         </div>
+                         <p>Data from the Centers for Medicare Medicaid Services include payments and ..</p>
+                     </div>
+                 </div>
+             </div>
+         </div>
+        </div>
+
+        <div class="text-center">
+            <a id="loadBlogPosts" class="btn btn-dark">Load More <span class="caret"></span></a>
+        </div>
+        </div>
+    </section>
     </div>
 </template>
