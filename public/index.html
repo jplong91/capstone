@@ -251,7 +251,7 @@
                         <div class="our-process-text">
                             <!-- our-process-text -->
                             <h4>Build Decks</h4>
-                            <p>Search for individual cards and create decks.</p>
+                            <p>New to Magic? Experienced Veteran? Start by using the card search feature to figure out what type of deck you would like to make. When you've brewed up an idea, create a deck and start adding cards to it!</p>
                         </div>
 
                     </div><!-- process -->
@@ -271,7 +271,7 @@
 
                             <!-- our-process-text -->
                             <h4>Join Teams</h4>
-                            <p>Create your own team with friends, or join a team with members from your local gamestore!</p>
+                            <p>Create a team with friends, or join a team with members from your local gamestore. The best magic players utilize teamwork to brainstorm the most cutting edge tactics!</p>
 
                         </div>
                     </div><!-- process -->
@@ -291,7 +291,7 @@
 
                             <!-- our-process-text -->
                             <h4>Share</h4>
-                            <p>Post your created decks to your team page. Team members can view and comment on your deck to give valuable feedback!</p>
+                            <p>Post your created decks to your team page. Team members can view and comment on your deck to give valuable feedback. Don't forget to check out the decks your teammates have made as well!</p>
 
                         </div>
                     </div><!-- process -->
@@ -811,7 +811,7 @@
             <div class="container">
                 <h1>{{ deck.name }}</h1>
                 <div class="breadcrumb">
-                    <a href="/#/">Home</a> <i class="fa fa-angle-double-right"></i> <a href="/#/decks">Decks</a> <i class="fa fa-angle-double-right"></i> <a href="/#/decks">{{ deck.name }}</a>
+                    <a href="/#/">Home</a> <i class="fa fa-angle-double-right"></i> <a href="/#/decks">Decks</a> <i class="fa fa-angle-double-right"></i> <a v-bind:href="'/#/decks/' + deck.id">{{ deck.name }}</a>
                 </div>
             </div>
         </header>

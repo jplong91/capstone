@@ -1,5 +1,9 @@
 /* global Vue, VueRouter, axios */
 
+// $(function() {
+//   $('[data-toggle="popover"]').popover();
+// });
+
 var HomePage = {
   template: "#home-page",
   data: function() {
