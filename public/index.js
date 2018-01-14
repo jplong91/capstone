@@ -61,7 +61,9 @@ var SingleDeckPage = {
       });
   },
   methods: {
-    pushEditPage: function() {}
+    goToEditPage: function() {
+      router.push("/decks/" + this.deck.id + "/edit");
+    }
   },
   computed: {}
 };
@@ -90,7 +92,7 @@ var CreateDeck = {
         .then(
           function(response) {
             this.deck = response.data;
-            router.push("/#/decks/" + this.deck.id + "/add-cards");
+            router.push("/#/decks/" + this.deck.id + "/edit");
           }.bind(this)
         )
         .catch(

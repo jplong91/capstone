@@ -788,7 +788,7 @@
         <div class="container">
 
             <div class="row">
-                <button type="button" class="btn btn-success btn-circle" v-on:click="'/#/decks/' + deck.id + '/edit'">Edit Deck</button>  
+                <button type="button" class="btn btn-success btn-circle" v-on:click="goToEditPage"><i class=ion-settings></i> Edit Deck</button>  
             </div>
 
             <hr>
@@ -863,8 +863,7 @@
             <div class="container">
                 <h1>{{ deck.name }}</h1>
                 <div class="breadcrumb">
-                    <a href="/#/">Home</a> <i class="fa fa-angle-double-right"></i> <a href="/#/decks">Decks</a> <i class="fa fa-angle-double-right"></i> <span>{{ deck.name }}</span>
-                    
+                    <a href="/#/">Home</a> <i class="fa fa-angle-double-right"></i> <a href="/#/decks">Decks</a> <i class="fa fa-angle-double-right"></i> <a href="/#/decks">{{ deck.name }}</a>
                 </div>
             </div>
         </header>
@@ -960,7 +959,7 @@
         <div class="container">
             <h1>Card Search</h1>
             <div class="breadcrumb">
-                <a href="/#/">Home</a> <i class="fa fa-angle-double-right"></i> <a href="#">Card Search</a>
+                <a href="/#/">Home</a> <i class="fa fa-angle-double-right"></i> <span>Card Search</span>
             </div>
         </div>
     </header>
