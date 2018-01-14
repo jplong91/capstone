@@ -1,4 +1,6 @@
 class Card < ApplicationRecord
+  validates :name, presence: true
+
   has_many :deck_cards
   has_many :decks, through: :deck_cards
 

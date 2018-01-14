@@ -260,7 +260,8 @@ var CreateTeam = {
     return {
       name: "",
       bio: "",
-      teamInfo: []
+      teamInfo: [],
+      errors: []
     };
   },
   mounted: function() {},
@@ -338,7 +339,9 @@ var Signup = {
       email: "",
       password: "",
       passwordConfirmation: "",
-      username: ""
+      username: "",
+
+      errors: []
     };
   },
   mounted: function() {},

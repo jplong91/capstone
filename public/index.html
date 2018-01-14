@@ -787,6 +787,9 @@
     </header>
     <section class="section">
         <div class="container">
+            <ul>
+              <li class="text-danger" v-for="error in errors">{{ error }}</li>
+            </ul>
             <h4>Deck Name</h4>
             <input class="form-control" type="text" placeholder="Black-White Vampires" v-model="name">
             <hr>
@@ -992,6 +995,9 @@
     </header>
     <section class="section">
         <div class="container">
+            <ul>
+              <li class="text-danger" v-for="error in errors">{{ error }}</li>
+            </ul>
             <h3>Fill in all fields to create an account</h3>
             <hr>
             <h4>First Name</h4>
@@ -1028,6 +1034,9 @@
     </header>
     <section class="section">
         <div class="container">
+            <ul>
+              <li class="text-danger" v-for="error in errors">{{ error }}</li>
+            </ul>
             <h4>Team Name</h4>
             <input class="form-control" type="text" placeholder="Magic Gentlemen" v-model="name">
             <hr>
