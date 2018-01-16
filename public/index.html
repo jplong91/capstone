@@ -747,30 +747,33 @@
         </header>
        <section id="blog-grid" class="section blog blog-grid">
         <div class="container">
+            <div class="row">
+                <button type="button" class="btn btn-success btn-circle" v-on:click="goToEditPage"><i class=ion-settings></i> Edit Deck</button>  
+            </div>
 
-            <!-- <table>
+            <hr>
+
+            <table class="deck-table">
                 <tbody>
                     <tr>
                         <td>
                             Creatures
                         </td>
                     </tr>
-                    <tr>
-                        <td>
+                    <tr v-for="card in cards">
+                        <td class="deck-col-qty">
                             4
                         </td>
-                        <td>
+                        <td class="deck-col-card">
                             Longtusk Cub
+                        </td>
+                        <td class="deck-col-mana">
+                            <span class="mana mana-1">1</span>
+                            <span class="mana mana-g">G</span>
                         </td>
                     </tr>
                 </tbody>
-            </table> -->
-
-            <div class="row">
-                <button type="button" class="btn btn-success btn-circle" v-on:click="goToEditPage"><i class=ion-settings></i> Edit Deck</button>  
-            </div>
-
-            <hr>
+            </table>
 
                     <div class="col-sm-6 col-md-6">
                         <h5>Cards</h5>
@@ -792,17 +795,6 @@
                 </div>
             </div>
             <div id="coverflow-slider"></div>
-
-            <!-- <div>
-                <div id="coverflow">
-                    <img src="http://placehold.it/350x350" />
-                    <img src="http://placehold.it/350x350/E8117F/FFFFFF" />
-                    <img src="http://placehold.it/350x350" />
-                    <img src="http://placehold.it/350x350/E8117F/FFFFFF" />
-                    <img src="http://placehold.it/350x350" />
-                </div>
-            </div>
-            <div id="coverflow-slider"></div> -->
         </section>
 
     </div>

@@ -49,10 +49,7 @@ var SingleDeckPage = {
   data: function() {
     return {
       deck: [],
-      cards: [],
-      cardImage: "",
-      cardImage2: "",
-      cardImage3: ""
+      cards: []
     };
   },
   mounted: function() {
@@ -62,9 +59,7 @@ var SingleDeckPage = {
         function(response) {
           this.deck = response.data;
           this.cards = response.data["cards"];
-          this.cardImage = response.data["cards"][0].card.image_url;
-          this.cardImage2 = response.data["cards"][1].card.image_url;
-          this.cardImage3 = response.data["cards"][2].card.image_url;
+          console.log(this.deck, this.cards);
           setTimeout(this.setupCoverflow, 1000);
           // this.setupCoverflow();
         }.bind(this)
