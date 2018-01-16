@@ -57,6 +57,12 @@
     <script src="assets/lib/jquery/dist/jquery.js"></script>
     <script src="assets/lib/bootstrap/dist/js/bootstrap.js"></script>
 
+<!-- Coverflow -->
+    <link rel="stylesheet" type="text/css" href="coverflow.css" />
+    <!-- <script src="jquery.min.js"></script> -->
+
+
+
 </head>
 
 <body data-spy="scroll" data-target="#main-nav-collapse" data-offset="100">
@@ -195,6 +201,15 @@
 <script src="assets/lib/magnific-popup/dist/jquery.magnific-popup.js"></script>
 
 <script src="assets/js/main.js"></script>
+
+<!-- Coverflow -->
+<!-- include coverflow after all dependencies-->
+<script src="coverflow.min.js"></script>
+
+<!-- Pie Chart -->
+    <script src="https://code.highcharts.com/js/highcharts.js"></script>
+    <script src="https://code.highcharts.com/js/modules/exporting.js"></script>
+
 
 <!--[if lt IE 10]>
 <script>
@@ -733,13 +748,29 @@
        <section id="blog-grid" class="section blog blog-grid">
         <div class="container">
 
+            <!-- <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            Creatures
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            4
+                        </td>
+                        <td>
+                            Longtusk Cub
+                        </td>
+                    </tr>
+                </tbody>
+            </table> -->
+
             <div class="row">
                 <button type="button" class="btn btn-success btn-circle" v-on:click="goToEditPage"><i class=ion-settings></i> Edit Deck</button>  
             </div>
 
             <hr>
-
-                <div class="row">
 
                     <div class="col-sm-6 col-md-6">
                         <h5>Cards</h5>
@@ -748,29 +779,90 @@
                         </ul>
                     </div>
 
-                    <!-- <div class="col-sm-6 col-md-6">
-                        <h5>Ordered</h5>
-                        <ol class="plain-list">
-                            <li>Lorem ipsum dolor sit amet</li>
-                            <li>Consectetur adipiscing elit</li>
-                            <li>Nulla volutpat aliquam velit
-                                <ul>
-                                    <li>Phasellus iaculis neque</li>
-                                    <li>Ac tristique libero volutpat at</li>
-                                </ul>
-                            </li>
-                            <li>Eget porttitor lorem</li>
-                        </ol>
-                    </div> -->
-
-                </div><!-- .row -->
-                
             </div>
-
-        </div><!-- .row -->
-
-        </div>
         </section>
+
+            <!-- <div id="pie-container">
+                
+            </div> -->
+        <section>
+            <div>
+                <div id="coverflow">
+                    <img v-for="card in cards" v-bind:src="card.card.image_url" alt="">
+                </div>
+            </div>
+            <div id="coverflow-slider"></div>
+
+            <!-- <div>
+                <div id="coverflow">
+                    <img src="http://placehold.it/350x350" />
+                    <img src="http://placehold.it/350x350/E8117F/FFFFFF" />
+                    <img src="http://placehold.it/350x350" />
+                    <img src="http://placehold.it/350x350/E8117F/FFFFFF" />
+                    <img src="http://placehold.it/350x350" />
+                </div>
+            </div>
+            <div id="coverflow-slider"></div> -->
+        </section>
+
+ <!-- Blog -->
+        <section id="blog" class="section blog">
+            <div class="container">
+
+                <!---->
+                <header class="section-heading">
+                    <h2>From The Blog</h2>
+                    <span>Awesome articles from the blog</span>
+                </header>
+                <!---->
+
+                <div id="blogContent" class="section-content">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4">
+                            <div class="blog-post">
+                                <header>
+                                    <h4 class="date">29<br>Aug</h4>
+                                    <div class="blog-element">
+                                        <img class="img-responsive" src="assets/images/blog/1.jpg" alt="">
+                                    </div>
+                                </header>
+                                <div class="blog-content">
+                                    <h4><a href="blog__single__right_sidebar.html">Why Billionaires join Gates Giving Pledge</a></h4>
+                                    <div class="post-meta">
+                                        <span>By <a href="#">Prium</a></span>
+                                        <span><a href="#">30 Comments</a></span>
+                                    </div>
+                                    <p>They signed the Giving Pledge -- an effort started in 2010 by ...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4">
+                            <div class="blog-post">
+                                <header>
+                                    <h4 class="date">29<br>Aug</h4>
+                                    <div class="blog-element">
+                                        <img class="img-responsive" src="assets/images/blog/2.jpg" alt="">
+                                    </div>
+                                </header>
+                                <div class="blog-content">
+                                    <h4><a href="blog__single__right_sidebar.html">Web agency template released</a></h4>
+                                    <div class="post-meta">
+                                        <span>By <a href="#">John Snow</a></span>
+                                        <span><a href="#">30 Comments</a></span>
+                                    </div>
+                                    <p>Data from the Centers for Medicare Medicaid Services include payments and ..</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!--/#blogContent-->
+
+            </div><!--/.container-->
+        </section>
+        <!-- Blog -->
+
+
     </div>
 </template>
 
@@ -1065,118 +1157,24 @@
         <div class="container">
              <div id="blogContent" class="section-content">
         <div class="row">
-            <div class="col-sm-6 col-md-6">
+            <div class="col-sm-6 col-md-6" v-for="team in teams">
                 <div class="blog-post">
                     <header>
-                        <h4 class="date">29<br>Aug</h4>
                         <div class="blog-element">
                             <img class="img-responsive" src="assets/images/blog/1.jpg" alt="">
                         </div>
                     </header>
                     <div class="blog-content">
-                        <h4><a href="#">Why Billionaires join Gates Giving Pledge</a></h4>
+                        <h4><a href="#">{{ team.team_name }}</a></h4>
                         <div class="post-meta">
                             <span>By <a href="#">Prium</a></span>
                             <span><a href="#">30 Comments</a></span>
                         </div>
-                        <p>They signed the Giving Pledge -- an effort started in 2010 by ...</p>
+                        <p>{{ team.team_bio }}</p>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-6">
-                <div class="blog-post">
-                    <header>
-                        <h4 class="date">29<br>Aug</h4>
-                        <div class="blog-element">
-                            <img class="img-responsive" src="assets/images/blog/2.jpg" alt="">
-                        </div>
-                    </header>
-                    <div class="blog-content">
-                        <h4><a href="#">Web agency template released</a></h4>
-                        <div class="post-meta">
-                            <span>By <a href="#">John Snow</a></span>
-                            <span><a href="#">30 Comments</a></span>
-                        </div>
-                        <p>Data from the Centers for Medicare Medicaid Services include payments and ..</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6 col-md-6">
-                <div class="blog-post">
-                    <header>
-                        <h4 class="date">29<br>Aug</h4>
-                        <div class="blog-element">
-                            <img class="img-responsive" src="assets/images/blog/2.jpg" alt="">
-                        </div>
-                    </header>
-                    <div class="blog-content">
-                        <h4><a href="#">Web agency template released</a></h4>
-                        <div class="post-meta">
-                            <span>By <a href="#">John Snow</a></span>
-                            <span><a href="#">30 Comments</a></span>
-                        </div>
-                        <p>Data from the Centers for Medicare Medicaid Services include payments and ..</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-6">
-                <div class="blog-post">
-                    <header>
-                        <h4 class="date">29<br>Aug</h4>
-                        <div class="blog-element">
-                            <img class="img-responsive" src="assets/images/blog/3.jpg" alt="">
-                        </div>
-                    </header>
-                    <div class="blog-content">
-                        <h4><a href="#">A companytour to lake powel, arizona</a></h4>
-                        <div class="post-meta">
-                            <span>By <a href="#">Tailor</a></span>
-                            <span><a href="#">30 Comments</a></span>
-                        </div>
-                        <p>Lake Powell is a reservoir on the Colorado River, straddling the border between ...</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-         <div class="row">
-             <div class="col-sm-6 col-md-6">
-                 <div class="blog-post">
-                     <header>
-                         <h4 class="date">29<br>Aug</h4>
-                         <div class="blog-element">
-                             <img class="img-responsive" src="assets/images/blog/1.jpg" alt="">
-                         </div>
-                     </header>
-                     <div class="blog-content">
-                         <h4><a href="#">Why Billionaires join Gates Giving Pledge</a></h4>
-                         <div class="post-meta">
-                             <span>By <a href="#">Prium</a></span>
-                             <span><a href="#">30 Comments</a></span>
-                         </div>
-                         <p>They signed the Giving Pledge -- an effort started in 2010 by ...</p>
-                     </div>
-                 </div>
-             </div>
-             <div class="col-sm-6 col-md-6">
-                 <div class="blog-post">
-                     <header>
-                         <h4 class="date">29<br>Aug</h4>
-                         <div class="blog-element">
-                             <img class="img-responsive" src="assets/images/blog/2.jpg" alt="">
-                         </div>
-                     </header>
-                     <div class="blog-content">
-                         <h4><a href="#">Web agency template released</a></h4>
-                         <div class="post-meta">
-                             <span>By <a href="#">John Snow</a></span>
-                             <span><a href="#">30 Comments</a></span>
-                         </div>
-                         <p>Data from the Centers for Medicare Medicaid Services include payments and ..</p>
-                     </div>
-                 </div>
-             </div>
+            
          </div>
         </div>
 

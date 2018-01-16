@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" type="text/css" href="coverflow.css" />
+  <script src="assets/lib/jquery/dist/jquery.js"></script>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.js"></script>
+  <script src="index.js" defer></script>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+
+  <div id="app">
+
+    <router-view></router-view>
+
+  </div>
+  
+  <script src="coverflow.min.js"></script>
+  <script>
+    $(function() {
+    // and kick off
+        $('#coverflow').coverflow();
+    });
+</script>
+</body>
+</html>
+
+<template id="single-deck-page">
+  <div>
+
+    <div>
+      <div id="coverflow">
+          <img v-bind:src="cardImage"/>
+          <img v-bind:src="cardImage2"/>
+          <img v-bind:src="cardImage3"/>
+      </div>
+    </div>
+    <div id="coverflow-slider"></div>
+
+  </div>
+</template>
