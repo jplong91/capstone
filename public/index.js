@@ -50,7 +50,12 @@ var SingleDeckPage = {
     return {
       deck: [],
       cards: [],
-      manaArray: []
+      manaArray: [],
+
+      /* Deck Breakdown Variables */
+      creatureQty: 0,
+      landQty: 0,
+      spellQty: 0
     };
   },
   mounted: function() {
@@ -62,56 +67,55 @@ var SingleDeckPage = {
           this.cards = response.data["cards"];
           // console.log(this.cards[0].card.mana_cost);
           setTimeout(this.setupCoverflow, 1000);
+          this.deckBreakdown();
           // this.setupCoverflow();
         }.bind(this)
       )
       .catch(function(error) {
         console.log(error);
       });
-
-    Highcharts.chart("pie-container", {
-      title: {
-        text: "Deck Name"
-      },
-
-      xAxis: {
-        categories: [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec"
-        ]
-      },
-
-      series: [
-        {
-          type: "pie",
-          allowPointSelect: true,
-          keys: ["name", "y", "selected", "sliced"],
-          data: [
-            ["Apples", 29.9, false],
-            ["Pears", 71.5, false],
-            ["Oranges", 106.4, false],
-            ["Plums", 129.2, false],
-            ["Bananas", 144.0, false],
-            ["Peaches", 176.0, false],
-            ["Prunes", 135.6, true, true],
-            ["Avocados", 148.5, false]
-          ],
-          showInLegend: true
-        }
-      ]
-    });
   },
   methods: {
+    deckBreakdown: function() {
+      this.cards.forEach(
+        function(card) {
+          if (card.card.card_type.includes("Creature")) {
+            this.creatureQty += card.quantity;
+          } else if (card.card.card_type.includes("Land")) {
+            this.landQty += card.quantity;
+          } else if (
+            card.card.card_type.includes("Instant") ||
+            card.card.card_type.includes("Sorcery")
+          ) {
+            this.spellQty += card.quantity;
+          }
+        }.bind(this)
+      );
+      this.setupPieChart();
+    },
+
+    setupPieChart: function() {
+      Highcharts.chart("pie-container", {
+        title: {
+          text: this.deck.name
+        },
+
+        series: [
+          {
+            type: "pie",
+            allowPointSelect: true,
+            keys: ["name", "y", "selected", "sliced"],
+            data: [
+              ["Creatures", this.creatureQty, false],
+              ["Land", 26, this.landQty, true],
+              ["Spells", this.spellQty, false]
+            ],
+            showInLegend: true
+          }
+        ]
+      });
+    },
+
     findCardTypeExistence: function(cardType) {
       let existence = false;
       this.cards.forEach(function(card) {
@@ -397,6 +401,18 @@ var TeamsPage = {
   computed: {}
 };
 
+var GameTools = {
+  template: "#game-tools",
+  data: function() {
+    return {
+      email: ""
+    };
+  },
+  mounted: function() {},
+  methods: {},
+  computed: {}
+};
+
 var Login = {
   template: "#login-page",
   data: function() {
@@ -441,6 +457,7 @@ var router = new VueRouter({
     { path: "/teams", component: TeamsPage },
     { path: "/login", component: Login },
     { path: "/signup", component: Signup },
+    { path: "/game-tools", component: GameTools },
     { path: "/card-search", component: CardSearch }
   ],
   scrollBehavior: function(to, from, savedPosition) {

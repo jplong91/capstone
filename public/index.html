@@ -133,6 +133,18 @@
         </li>
 
         <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools</a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="/#/game-tools"><i class="ion-wrench"></i> Game Tools</a>
+                </li>
+                <li>
+                    <a href="#"><i class="ion-hammer"></i> Judge Tools</a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Login</span></a>
             <ul class="dropdown-menu">
                 <li><a href="/#/login"><i class="ion-power"></i> Login</a></li>
@@ -758,7 +770,7 @@
                 <tbody>
                     <tr>
                         <td class="deck-card-header">
-                            Creatures
+                            Creatures ({{ creatureQty }})
                         </td>
                     </tr>
                     <tr v-for="card in cards" v-if="card.card.card_type.includes('Creature')">
@@ -775,7 +787,7 @@
 
                     <tr>
                         <td class="deck-card-header">
-                            Spells
+                            Spells ({{ spellQty }})
                         </td>
                     </tr>
                     <tr v-for="card in cards" v-if="card.card.card_type.includes('Instant') || card.card.card_type.includes('Sorcery')">
@@ -792,7 +804,7 @@
 
                     <tr>
                         <td  class="deck-card-header">
-                            Land
+                            Land ({{ landQty }})
                         </td>
                     </tr>
                     <tr v-for="card in cards" v-if="card.card.card_type.includes('Land')">
@@ -808,13 +820,6 @@
                     </tr>
                 </tbody>
             </table>
-
-                    <!-- <div class="col-sm-6 col-md-6">
-                        <h5>Cards</h5>
-                        <ul class="plain-list">
-                            <li v-for="card in cards">{{ card.card.name }}</li>
-                        </ul>
-                    </div> -->
 
             </div>
         </section>
@@ -1016,70 +1021,6 @@
     </div>
 </template>
 
-<template id="login-page">
-    <div>
-    <header id="header" class="home-parallax home-fade dark-bg header-inner2">
-        <div class="color-overlay"></div>
-        <div class="container">
-            <h1>Login</h1>
-            <div class="breadcrumb">
-                <a href="/#/">Home</a> <i class="fa fa-angle-double-right"></i> <span>Login</span>
-            </div>
-        </div>
-    </header>
-    <section class="section">
-        <div class="container">
-            <h4>Email</h4>
-            <input class="form-control" type="text" placeholder="JohnDoe@email.com" v-model="email">
-            <hr>
-            <h4>Password</h4>
-            <input class="form-control" type="password" rows="6" v-model="password"></input>
-            <hr>
-            <button class="btn btn-dark" v-on:click="login()"><i class="ion-power"></i> Login</button>
-        </div>
-    </section>
-    </div>
-</template>
-
-<template id="signup-page">
-    <div>
-    <header id="header" class="home-parallax home-fade dark-bg header-inner2">
-        <div class="color-overlay"></div>
-        <div class="container">
-            <h1>Signup</h1>
-            <div class="breadcrumb">
-                <a href="/#/">Home</a> <i class="fa fa-angle-double-right"></i> <span>Signup</span>
-            </div>
-        </div>
-    </header>
-    <section class="section">
-        <div class="container">
-            <ul>
-              <li class="text-danger" v-for="error in errors">{{ error }}</li>
-            </ul>
-            <h3>Fill in all fields to create an account</h3>
-            <hr>
-            <h4>First Name</h4>
-            <input class="form-control" type="text" placeholder="John" v-model="firstName">
-            <h4>Last Name</h4>
-            <input class="form-control" type="text" rows="6" placeholder="Doe" v-model="lastName"></input>
-            <hr>
-            <h4>Email</h4>
-            <input class="form-control" type="text" placeholder="JohnDoe@email.com" v-model="email">
-            <h4>Password</h4>
-            <input class="form-control" type="password" v-model="password">
-            <h4>Password Confirmation</h4>
-            <input class="form-control" type="password" v-model="passwordConfirmation">
-            <hr>
-            <h4>Username</h4>
-            <input class="form-control" type="text" placeholder="iLoveMagic" v-model="username">
-            <hr>
-            <button class="btn btn-dark" v-on:click="create()"><i class="ion-android-hand"></i> Create Account</button>
-        </div>
-    </section>
-    </div>
-</template>
-
 <template id="create-team-page">
     <div>
     <header id="header" class="home-parallax home-fade dark-bg header-inner3">
@@ -1148,6 +1089,88 @@
         <div class="text-center">
             <a id="loadBlogPosts" class="btn btn-dark">Load More <span class="caret"></span></a>
         </div>
+        </div>
+    </section>
+    </div>
+</template>
+
+<template id="game-tools">
+    <div>
+    <header id="header" class="home-parallax home-fade dark-bg header-inner4">
+        <div class="color-overlay"></div>
+        <div class="container">
+            <h1>Tools</h1>
+            <div class="breadcrumb">
+                <a href="/#/">Home</a> <i class="fa fa-angle-double-right"></i> <span> Game Tools</span>
+            </div>
+        </div>
+    </header>
+
+
+
+
+    </div>
+</template>
+
+<template id="login-page">
+    <div>
+    <header id="header" class="home-parallax home-fade dark-bg header-inner2">
+        <div class="color-overlay"></div>
+        <div class="container">
+            <h1>Login</h1>
+            <div class="breadcrumb">
+                <a href="/#/">Home</a> <i class="fa fa-angle-double-right"></i> <span>Login</span>
+            </div>
+        </div>
+    </header>
+    <section class="section">
+        <div class="container">
+            <h4>Email</h4>
+            <input class="form-control" type="text" placeholder="JohnDoe@email.com" v-model="email">
+            <hr>
+            <h4>Password</h4>
+            <input class="form-control" type="password" rows="6" v-model="password"></input>
+            <hr>
+            <button class="btn btn-dark" v-on:click="login()"><i class="ion-power"></i> Login</button>
+        </div>
+    </section>
+    </div>
+</template>
+
+<template id="signup-page">
+    <div>
+    <header id="header" class="home-parallax home-fade dark-bg header-inner2">
+        <div class="color-overlay"></div>
+        <div class="container">
+            <h1>Signup</h1>
+            <div class="breadcrumb">
+                <a href="/#/">Home</a> <i class="fa fa-angle-double-right"></i> <span>Signup</span>
+            </div>
+        </div>
+    </header>
+    <section class="section">
+        <div class="container">
+            <ul>
+              <li class="text-danger" v-for="error in errors">{{ error }}</li>
+            </ul>
+            <h3>Fill in all fields to create an account</h3>
+            <hr>
+            <h4>First Name</h4>
+            <input class="form-control" type="text" placeholder="John" v-model="firstName">
+            <h4>Last Name</h4>
+            <input class="form-control" type="text" rows="6" placeholder="Doe" v-model="lastName"></input>
+            <hr>
+            <h4>Email</h4>
+            <input class="form-control" type="text" placeholder="JohnDoe@email.com" v-model="email">
+            <h4>Password</h4>
+            <input class="form-control" type="password" v-model="password">
+            <h4>Password Confirmation</h4>
+            <input class="form-control" type="password" v-model="passwordConfirmation">
+            <hr>
+            <h4>Username</h4>
+            <input class="form-control" type="text" placeholder="iLoveMagic" v-model="username">
+            <hr>
+            <button class="btn btn-dark" v-on:click="create()"><i class="ion-android-hand"></i> Create Account</button>
         </div>
     </section>
     </div>

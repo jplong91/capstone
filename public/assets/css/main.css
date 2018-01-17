@@ -1121,7 +1121,7 @@ blockquote p {
 .header-inner {
   padding-top: 200px;
   background-color: black;
-  background-image: url(../images/backgrounds/bg-testimonial.jpg);
+  background-image: url(../images/backgrounds/kld-aether-hub.png);
   background-size: cover;
   text-align: center;
 }
@@ -1139,7 +1139,7 @@ blockquote p {
 .header-inner2 {
   padding-top: 200px;
   background-color: black;
-  background-image: url(../images/backgrounds/bg-testimonial2.jpg);
+  background-image: url(../images/backgrounds/frf-forest.jpg);
   background-size: cover;
   text-align: center;
 }
@@ -1157,7 +1157,7 @@ blockquote p {
 .header-inner3 {
   padding-top: 200px;
   background-color: black;
-  background-image: url(../images/backgrounds/bg-testimonial3.jpg);
+  background-image: url(../images/backgrounds/ojutais-command.jpg);
   background-size: cover;
   text-align: center;
 }
@@ -1169,6 +1169,24 @@ blockquote p {
   color: inherit;
 }
 .header-inner3 .breadcrumb i {
+  margin: 0 10px;
+}
+
+.header-inner4 {
+  padding-top: 200px;
+  background-color: black;
+  background-image: url(../images/backgrounds/kld-swamp.jpg);
+  background-size: cover;
+  text-align: center;
+}
+.header-inner4 .breadcrumb {
+  background-color: transparent;
+  color: rgba(254, 254, 255, 0.7);
+}
+.header-inner4 .breadcrumb a {
+  color: inherit;
+}
+.header-inner4 .breadcrumb i {
   margin: 0 10px;
 }
 
