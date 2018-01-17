@@ -3097,8 +3097,7 @@ blockquote p {
   font-weight: bold;
 }
 
-@import "https://code.highcharts.com/css/highcharts.css";
-
+/* -- Highcharts --*/
 #pie-container {
   height: 400px;
   max-width: 800px;

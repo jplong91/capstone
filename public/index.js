@@ -49,7 +49,8 @@ var SingleDeckPage = {
   data: function() {
     return {
       deck: [],
-      cards: []
+      cards: [],
+      manaArray: []
     };
   },
   mounted: function() {
@@ -59,7 +60,7 @@ var SingleDeckPage = {
         function(response) {
           this.deck = response.data;
           this.cards = response.data["cards"];
-          console.log(this.deck, this.cards);
+          // console.log(this.cards[0].card.mana_cost);
           setTimeout(this.setupCoverflow, 1000);
           // this.setupCoverflow();
         }.bind(this)
@@ -68,59 +69,79 @@ var SingleDeckPage = {
         console.log(error);
       });
 
-    // Highcharts.chart("pie-container", {
-    //   title: {
-    //     text: "Pie point CSS"
-    //   },
+    Highcharts.chart("pie-container", {
+      title: {
+        text: "Deck Name"
+      },
 
-    //   xAxis: {
-    //     categories: [
-    //       "Jan",
-    //       "Feb",
-    //       "Mar",
-    //       "Apr",
-    //       "May",
-    //       "Jun",
-    //       "Jul",
-    //       "Aug",
-    //       "Sep",
-    //       "Oct",
-    //       "Nov",
-    //       "Dec"
-    //     ]
-    //   },
+      xAxis: {
+        categories: [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec"
+        ]
+      },
 
-    //   series: [
-    //     {
-    //       type: "pie",
-    //       allowPointSelect: true,
-    //       keys: ["name", "y", "selected", "sliced"],
-    //       data: [
-    //         ["Apples", 29.9, false],
-    //         ["Pears", 71.5, false],
-    //         ["Oranges", 106.4, false],
-    //         ["Plums", 129.2, false],
-    //         ["Bananas", 144.0, false],
-    //         ["Peaches", 176.0, false],
-    //         ["Prunes", 135.6, true, true],
-    //         ["Avocados", 148.5, false]
-    //       ],
-    //       showInLegend: true
-    //     }
-    //   ]
-    // });
+      series: [
+        {
+          type: "pie",
+          allowPointSelect: true,
+          keys: ["name", "y", "selected", "sliced"],
+          data: [
+            ["Apples", 29.9, false],
+            ["Pears", 71.5, false],
+            ["Oranges", 106.4, false],
+            ["Plums", 129.2, false],
+            ["Bananas", 144.0, false],
+            ["Peaches", 176.0, false],
+            ["Prunes", 135.6, true, true],
+            ["Avocados", 148.5, false]
+          ],
+          showInLegend: true
+        }
+      ]
+    });
   },
   methods: {
+    findCardTypeExistence: function(cardType) {
+      let existence = false;
+      this.cards.forEach(function(card) {
+        if (card.card.card_type.includes(this.cardType)) {
+          existence = true;
+        }
+      });
+      return existence;
+    },
+
+    convertManaStringToArray: function(manaString) {
+      // given "{1}{B}"
+      // return ["1", "B"]
+      if (manaString !== null) {
+        manaArray = manaString.match(/(?<={).+?(?=})/g);
+        return manaArray.map(s => s.toLowerCase());
+      } else {
+        manaArray = null;
+      }
+    },
+
     goToEditPage: function() {
       router.push("/decks/" + this.deck.id + "/edit");
     },
+
     setupCoverflow: function() {
       $("#coverflow").coverflow();
       $("#coverflow").coverflow({
         active: 2,
-        select: function(event, ui) {
-          console.log("here");
-        }
+        select: function(event, ui) {}
       });
 
       $("#coverflow img").click(function() {
