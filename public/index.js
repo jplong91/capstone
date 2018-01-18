@@ -66,7 +66,7 @@ var SingleDeckPage = {
           this.deck = response.data;
           this.cards = response.data["cards"];
           // console.log(this.cards[0].card.mana_cost);
-          setTimeout(this.setupCoverflow, 1000);
+          // setTimeout(this.setupCoverflow, 1000);
           this.deckBreakdown();
           // this.setupCoverflow();
         }.bind(this)
@@ -91,7 +91,6 @@ var SingleDeckPage = {
           }
         }.bind(this)
       );
-      this.setupPieChart();
     },
 
     setupPieChart: function() {
@@ -184,7 +183,7 @@ var CreateDeck = {
         .then(
           function(response) {
             this.deck = response.data;
-            router.push("/#/decks/" + this.deck.id + "/edit");
+            router.push("/decks/" + this.deck.id + "/edit");
           }.bind(this)
         )
         .catch(
@@ -405,11 +404,34 @@ var GameTools = {
   template: "#game-tools",
   data: function() {
     return {
-      email: ""
+      people: [],
+      person: "",
+      pairings: [],
+      byePlayer: ""
     };
   },
   mounted: function() {},
-  methods: {},
+  methods: {
+    addPersonToPeople: function() {
+      if (this.person !== "") {
+        this.people.push(this.person);
+        this.person = "";
+      }
+    },
+
+    createPairings: function() {
+      for (let i = this.people.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [this.people[i], this.people[j]] = [this.people[j], this.people[i]];
+      }
+      for (let i = 0; i < this.people.length - 1; i += 2) {
+        this.pairings.push([this.people[i], this.people[i + 1]]);
+      }
+      if (this.people.length % 2 !== 0) {
+        this.byePlayer = this.people[this.people.length - 1];
+      }
+    }
+  },
   computed: {}
 };
 
