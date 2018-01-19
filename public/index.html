@@ -684,8 +684,8 @@
                         <div class="main_content">
                             <div class="isotop-filter" id="filters">
                                 <button type="button" class="btn btn-isotop is-checked" data-filter="*">All</button>
-                                <button type="button" class="btn btn-isotop" data-filter=".design">Standard</button>
-                                <button type="button" class="btn btn-isotop" data-filter=".wordpress">Modern</button>
+                                <button type="button" class="btn btn-isotop" data-filter="Standard">Standard</button>
+                                <button type="button" class="btn btn-isotop" data-filter="Modern">Modern</button>
                                 <button type="button" class="btn btn-isotop" data-filter=".marketing">Legacy</button>
                                 <button type="button" class="btn btn-isotop" data-filter=".brandidentity">Limited</button>
                             </div>
@@ -773,7 +773,7 @@
                             {{ card.quantity }}
                         </td>
                         <td class="deck-col-card">
-                            {{ card.card.name }}
+                            <a v-on:mouseover="cardImageShow = !cardImageShow" v-on:mouseleave="cardImageShow = !cardImageShow" href="">{{ card.card.name }}</a><span data-toggle="popover"><img v-show="cardImageShow" v-bind:src="card.card.image_url" alt=""></span>
                         </td>
                         <td class="deck-col-mana" >
                                 <span v-for="manaSymbol in convertManaStringToArray(card.card.mana_cost)" v-bind:class="'mana mana-' + manaSymbol">{{ manaSymbol }}</span>
@@ -790,7 +790,7 @@
                             {{ card.quantity }}
                         </td>
                         <td class="deck-col-card">
-                            {{ card.card.name }}
+                            <a href="">{{ card.card.name }}</a>
                         </td>
                         <td class="deck-col-mana" >
                                 <span v-for="manaSymbol in convertManaStringToArray(card.card.mana_cost)" v-bind:class="'mana mana-' + manaSymbol">{{ manaSymbol }}</span>
@@ -807,7 +807,7 @@
                             {{ card.quantity }}
                         </td>
                         <td class="deck-col-card">
-                            {{ card.card.name }}
+                            <a href="">{{ card.card.name }}</a>
                         </td>
                         <td class="deck-col-mana">
                             <span v-for="manaSymbol in convertManaStringToArray(card.card.mana_cost)" v-bind:class="'mana mana-' + manaSymbol">{{ manaSymbol }}</span>
@@ -826,7 +826,11 @@
                   Card Breakdown
                 </button>
 
-                <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#coverflow" aria-expanded="false" aria-controls="coverflow" v-on:click="setupCoverflow"><i class=ion-ios-browsers></i>
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#manaCurve" v-on:click="setupManaCurveGraph()"><i class=ion-podium></i>
+                  Mana Curve
+                </button>
+
+                <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#coverflow" aria-expanded="false" aria-controls="coverflow" v-on:click="setupCoverflow()"><i class=ion-ios-browsers></i>
                 Cardflow
                 </button>
             </div>
@@ -837,18 +841,38 @@
             </div>
         </section> 
 
-        <!-- Modal -->
-        <div class="modal fade" id="cardTypeBreakdown" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <!-- Pie Chart Modal -->
+        <div class="modal fade" id="cardTypeBreakdown" tabindex="-1" role="dialog" aria-labelledby="cardTypeBreakdown" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="breakdownTitle">Cardtype Breakdown</h5>
+                <h5 class="modal-title" id="breakdownTitle">{{ deck.name }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
                 <div id="pie-container"></div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mana Curve Modal -->
+        <div class="modal fade" id="manaCurve" tabindex="-1" role="dialog" aria-labelledby="manaCurve" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="breakdownTitle">{{ deck.name }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div id="mana-curve-container"></div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
@@ -1100,14 +1124,13 @@
                 <div class="blog-post">
                     <header>
                         <div class="blog-element">
-                            <img class="img-responsive" src="assets/images/blog/1.jpg" alt="">
+                            <img class="img-responsive" src="assets/images/blog/teampros.jpg" alt="">
                         </div>
                     </header>
                     <div class="blog-content">
                         <h4><a href="#">{{ team.team_name }}</a></h4>
                         <div class="post-meta">
-                            <span>By <a href="#">Prium</a></span>
-                            <span><a href="#">30 Comments</a></span>
+                            <span><a href="#">Members: {{ team.users.length }}</a></span>
                         </div>
                         <p>{{ team.team_bio }}</p>
                     </div>

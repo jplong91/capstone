@@ -51,6 +51,9 @@ var SingleDeckPage = {
       deck: [],
       cards: [],
       manaArray: [],
+      manaCostArray: [],
+      cardImageShow: false,
+      show: true,
 
       /* Deck Breakdown Variables */
       creatureQty: 0,
@@ -65,10 +68,7 @@ var SingleDeckPage = {
         function(response) {
           this.deck = response.data;
           this.cards = response.data["cards"];
-          // console.log(this.cards[0].card.mana_cost);
-          // setTimeout(this.setupCoverflow, 1000);
           this.deckBreakdown();
-          // this.setupCoverflow();
         }.bind(this)
       )
       .catch(function(error) {
@@ -76,9 +76,26 @@ var SingleDeckPage = {
       });
   },
   methods: {
+    buildManaFrequencyHash: function() {
+      frequenciesHash = { 0: 0 };
+      this.manaCostArray.forEach(function(cmc) {
+        if (frequenciesHash[cmc] == null) {
+          frequenciesHash[cmc] = 1;
+        } else {
+          frequenciesHash[cmc] = frequenciesHash[cmc] + 1;
+        }
+      });
+      frequencyNumArray = Object.values(frequenciesHash);
+      return frequencyNumArray;
+    },
+
     deckBreakdown: function() {
       this.cards.forEach(
         function(card) {
+          if (card.card.cmc !== 0) {
+            this.manaCostArray.push(card.card.cmc);
+            // console.log(this.manaCostArray);
+          }
           if (card.card.card_type.includes("Creature")) {
             this.creatureQty += card.quantity;
           } else if (card.card.card_type.includes("Land")) {
@@ -93,10 +110,53 @@ var SingleDeckPage = {
       );
     },
 
+    setupManaCurveGraph: function() {
+      Highcharts.chart("mana-curve-container", {
+        chart: {
+          type: "column"
+        },
+        title: {
+          text: "Mana Curve"
+        },
+        xAxis: {
+          min: 1,
+          crosshair: true
+        },
+        yAxis: {
+          min: 0,
+          title: {
+            text: "number of cards"
+          }
+        },
+        tooltip: {
+          headerFormat:
+            '<span style="font-size:10px">{point.key}</span><table>',
+          pointFormat:
+            '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} cards</b></td></tr>',
+          footerFormat: "</table>",
+          shared: true,
+          useHTML: true
+        },
+        plotOptions: {
+          column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+          }
+        },
+        series: [
+          {
+            name: "Converted Mana Cost",
+            data: this.buildManaFrequencyHash()
+          }
+        ]
+      });
+    },
+
     setupPieChart: function() {
       Highcharts.chart("pie-container", {
         title: {
-          text: this.deck.name
+          text: "Cardtype Breakdown"
         },
 
         series: [

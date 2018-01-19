@@ -3321,3 +3321,16 @@ blockquote p {
 .mana-4 {
   background-position: -45px -120px;
 }
+
+/*.hover-card-img a {
+  position: relative;
+}
+.hover-card-img a span {
+  position: absolute;
+  display: none;
+  z-index: 99;
+}
+.hover-card-img a:hover span {
+  display: block;
+  width: 350px;
+}*/
