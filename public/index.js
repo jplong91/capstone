@@ -53,7 +53,7 @@ var SingleDeckPage = {
       manaArray: [],
       manaCostArray: [],
       cardImageShow: false,
-      show: true,
+      cardflowShow: false,
 
       /* Deck Breakdown Variables */
       creatureQty: 0,
@@ -369,16 +369,20 @@ var CardSearch = {
       cardText: "",
       cardFlavor: "",
       cardSetName: "Unstable",
-      cardArtist: "John Avon"
+      cardArtist: "John Avon",
+
+      cardPrice: 0
     };
   },
   mounted: function() {},
   methods: {
     search: function() {
+      let params = {
+        card_name: this.inputCardName,
+        cfb_search: this.inputCardName.replace(" ", "%20")
+      };
       axios
-        .get(
-          "https://api.magicthegathering.io/v1/cards?name=" + this.inputCardName
-        )
+        .get("/v1/cards/acquire/info?card_name=" + params["card_name"])
         .then(
           function(response) {
             this.cardName = response.data["cards"][0]["name"];
@@ -389,6 +393,15 @@ var CardSearch = {
             this.cardFlavor = response.data["cards"][0]["flavor"];
             this.cardArtist = response.data["cards"][0]["artist"];
             this.cardSetName = response.data["cards"][0]["setName"];
+
+            axios
+              .get("/v1/cards/acquire/price?cfb_search=" + params["cfb_search"])
+              .then(
+                function(response) {
+                  console.log(response);
+                  this.cardPrice = response.data[0];
+                }.bind(this)
+              );
           }.bind(this)
         )
         .catch(

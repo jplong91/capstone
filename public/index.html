@@ -58,11 +58,13 @@
     <script src="assets/lib/bootstrap/dist/js/bootstrap.js"></script>
 
 <!-- Coverflow -->
-    <link rel="stylesheet" type="text/css" href="coverflow.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/coverflow.css" />
 
 <!-- Highchart Pie -->
-    <link rel="stylesheet" type="text/css" href="highcharts.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/highcharts.css" />
 
+<!-- Dropzone -->
+    <link rel="stylesheet" type="text/css" href="assets/css/dropzone.css" />
 
 </head>
 
@@ -214,6 +216,9 @@
 <script src="assets/lib/magnific-popup/dist/jquery.magnific-popup.js"></script>
 
 <script src="assets/js/main.js"></script>
+
+<!-- Dropzone -->
+<script src="dropzone.js"></script>
 
 <!-- Coverflow -->
 <!-- include coverflow after all dependencies-->
@@ -707,7 +712,7 @@
 
                     <ul id="da-thumbs" class="da-thumbs isotope">
 
-                        <li class="design" v-for="deck in decks" data-category="deck.format">
+                        <li v-for="deck in decks" data-category="deck.format" class="design">
                             <a v-bind:href="'/#/decks/' + deck.id">
                                 <img v-bind:src="deck.displayImage" class="decks-page-indiv"/>
                                 <div class="portfolio-detail-overlay">
@@ -721,7 +726,7 @@
                             </a>
                         </li>
 
-                        <!-- <li data-category="marketing" class="marketing">
+                        <li data-category="marketing" class="marketing">
                             <a href="portfolio__single.html">
                                 <img src="assets/images/work/02.jpg" alt="" />
                                 <div class="portfolio-detail-overlay">
@@ -733,7 +738,7 @@
                                     </div>
                                 </div>
                             </a>
-                        </li> -->
+                        </li>
 
                         
                     </ul>
@@ -882,10 +887,8 @@
         </div>
 
         <section>
-            <div>
-                <div class="collapse" id="coverflow">
-                    <img v-for="card in cards" v-bind:src="card.card.image_url" alt="">
-                </div>
+            <div class="collapse" id="coverflow">
+                <img v-for="card in cards" v-bind:src="card.card.image_url" alt="">
             </div>
             <div id="coverflow-slider"></div>
         </section>
@@ -1031,6 +1034,7 @@
             </div>
         </div>
     </header>
+
     <!-- Contact-us -->
     <section id="contact" class="section contact">
         <div class="container">
@@ -1041,7 +1045,7 @@
                     <div class="col-md-6 col-sm-5">
                         <h5>Enter the name of the card</h5>
                         
-
+                            <h5 v-if="cardPrice !== 0">{{ cardPrice }}</h5>
                             <div class="form-group">
                                 <input class="form-control" id="name" name="name" placeholder="Island" type="text" v-model="inputCardName" required>
                             </div>
@@ -1070,9 +1074,16 @@
                     </div>
                 </div>
             </div>
+
+            <hr>
+
+            <form action="/file-upload"
+            class="dropzone dz-message"
+            id="my-awesome-dropzone"></form>
         </div>
     </section>
     <!-- /Contact-us -->
+
     </div>
 </template>
 

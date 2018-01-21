@@ -37,4 +37,17 @@ class V1::CardsController < ApplicationController
     end
   end
 
+  def acquire_card_info
+    response = Unirest.get("https://api.magicthegathering.io/v1/cards?name=" + params[:card_name])
+    card_info = response.body
+    puts card_info
+    render json: card_info
+  end
+
+  def acquire_card_price
+    response = Unirest.get("http://magictcgprices.appspot.com/api/cfb/price.json?cardname=" + params[:cfb_search])
+    card_price = response.body
+    render json: card_price
+  end
+
 end
