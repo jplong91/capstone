@@ -11,7 +11,10 @@ var HomePage = {
       example: []
     };
   },
-  mounted: function() {},
+  mounted: function() {
+    console.log("MOUNTED");
+    initTheme();
+  },
   methods: {},
   computed: {}
 };
@@ -21,23 +24,37 @@ var DecksPage = {
   data: function() {
     return {
       decks: [],
-      errors: []
+      errors: [],
+      showFakeDeck: true
     };
   },
-  mounted: function() {
+  created: function() {
     axios
       .get("v1/decks")
       .then(
         function(response) {
+          this.showFakeDeck = false;
           this.decks = response.data;
           this.decks.forEach(function(deck) {
-            deck["displayImage"] = deck["cards"][0]["card"]["image_url"];
+            // deck["displayImage"] = deck["cards"][0]["card"]["image_url"];
+            Vue.set(
+              deck,
+              "displayImage",
+              deck["cards"][0]["card"]["image_url"]
+            );
           });
+          console.log("DEEEECKS", this.decks);
         }.bind(this)
       )
       .catch(function(error) {
         console.log(error);
       });
+  },
+  mounted: function() {
+    console.log("decks", this.decks);
+    console.log("MOUNTED");
+    initTheme();
+    // setTimeout(initTheme, 1000);
   },
   methods: {},
   computed: {}

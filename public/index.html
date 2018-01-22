@@ -49,7 +49,6 @@
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.js"></script>
-    <script src="index.js" defer></script>
 <!-- /VUE JS -->
 
 
@@ -215,7 +214,8 @@
 <script src="assets/lib/jquery.mb.YTPlayer/dist/jquery.mb.YTPlayer.min.js"></script>
 <script src="assets/lib/magnific-popup/dist/jquery.magnific-popup.js"></script>
 
-<script src="assets/js/main.js"></script>
+<script src="assets/js/main2.js"></script>
+<script src="index.js" defer></script>
 
 <!-- Dropzone -->
 <script src="dropzone.js"></script>
@@ -689,8 +689,8 @@
                         <div class="main_content">
                             <div class="isotop-filter" id="filters">
                                 <button type="button" class="btn btn-isotop is-checked" data-filter="*">All</button>
-                                <button type="button" class="btn btn-isotop" data-filter="Standard">Standard</button>
-                                <button type="button" class="btn btn-isotop" data-filter="Modern">Modern</button>
+                                <button type="button" class="btn btn-isotop" data-filter=".Standard">Standard</button>
+                                <button type="button" class="btn btn-isotop" data-filter=".Modern">Modern</button>
                                 <button type="button" class="btn btn-isotop" data-filter=".marketing">Legacy</button>
                                 <button type="button" class="btn btn-isotop" data-filter=".brandidentity">Limited</button>
                             </div>
@@ -712,28 +712,27 @@
 
                     <ul id="da-thumbs" class="da-thumbs isotope">
 
-                        <li v-for="deck in decks" data-category="deck.format" class="design">
-                            <a v-bind:href="'/#/decks/' + deck.id">
-                                <img v-bind:src="deck.displayImage" class="decks-page-indiv"/>
+                        <li v-if="showFakeDeck" data-category="deck.format" class="deck-page-indiv">
+                            <a href="'/#/decks/' + deck.id">
+                                <img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=435334&type=card" class="decks-page-indiv-img"/>
                                 <div class="portfolio-detail-overlay">
                                     <div class="middle-align-wrap">
                                         <div class="middle-align-cell">
-                                            <h4>{{ deck.name }}</h4>
-                                            <span>{{ deck.description }}</span>
+                                            <h4>Sample name</h4>
+                                            <span>Sample description</span>
                                         </div>
                                     </div>
                                 </div>
                             </a>
                         </li>
-
-                        <li data-category="marketing" class="marketing">
-                            <a href="portfolio__single.html">
-                                <img src="assets/images/work/02.jpg" alt="" />
+                        <li v-for="deck in decks" v-bind:data-category="deck.format" class="deck-page-indiv">
+                            <a v-bind:href="'/#/decks/' + deck.id">
+                                <img v-bind:src="deck.displayImage" class="decks-page-indiv-img"/>
                                 <div class="portfolio-detail-overlay">
                                     <div class="middle-align-wrap">
                                         <div class="middle-align-cell">
-                                            <h4>Corporate Website</h4>
-                                            <span>Webdesign</span>
+                                            <h4>{{ deck.name }}</h4>
+                                            <span>{{ deck.description }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1078,7 +1077,7 @@
             <hr>
 
             <form action="/file-upload"
-            class="dropzone dz-message"
+            class="dropzone"
             id="my-awesome-dropzone"></form>
         </div>
     </section>
