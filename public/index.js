@@ -69,6 +69,7 @@ var SingleDeckPage = {
       manaCostArray: [],
       cardImageShow: false,
       cardflowShow: false,
+      tempCardImage: "",
 
       /* Deck Breakdown Variables */
       creatureQty: 0,

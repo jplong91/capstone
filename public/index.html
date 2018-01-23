@@ -767,10 +767,18 @@
        <section id="blog-grid" class="section blog blog-grid">
             <div class="container">
 
+                <div class="image-container">
+                    <img class="hover-card-img" v-show="cardImageShow" v-bind:src="tempCardImage" alt="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=439602&type=card">
+                    
+                </div>
+
+
+            <div class="table-container">
+                
             <table class="deck-table">
                 <tbody>
                     <tr>
-                        <td class="deck-card-header">
+                        <td class="deck-card-header" colspan="3">
                             Creatures ({{ creatureQty }})
                         </td>
                     </tr>
@@ -779,7 +787,7 @@
                             {{ card.quantity }}
                         </td>
                         <td class="deck-col-card">
-                            <a v-on:mouseover="cardImageShow = !cardImageShow" v-on:mouseleave="cardImageShow = !cardImageShow" href="">{{ card.card.name }}</a><span data-toggle="popover"><img v-show="cardImageShow" v-bind:src="card.card.image_url" alt=""></span>
+                            <a v-on:mouseover="cardImageShow = !cardImageShow; tempCardImage = card.card.image_url" v-on:mouseleave="cardImageShow = !cardImageShow" href="">{{ card.card.name }}</a>
                         </td>
                         <td class="deck-col-mana" >
                                 <span v-for="manaSymbol in convertManaStringToArray(card.card.mana_cost)" v-bind:class="'mana mana-' + manaSymbol">{{ manaSymbol }}</span>
@@ -787,7 +795,7 @@
                     </tr>
 
                     <tr>
-                        <td class="deck-card-header">
+                        <td class="deck-card-header" colspan="3">
                             Spells ({{ spellQty }})
                         </td>
                     </tr>
@@ -796,7 +804,7 @@
                             {{ card.quantity }}
                         </td>
                         <td class="deck-col-card">
-                            <a href="">{{ card.card.name }}</a>
+                            <a v-on:mouseover="cardImageShow = !cardImageShow; tempCardImage = card.card.image_url" v-on:mouseleave="cardImageShow = !cardImageShow" href="">{{ card.card.name }}</a>
                         </td>
                         <td class="deck-col-mana" >
                                 <span v-for="manaSymbol in convertManaStringToArray(card.card.mana_cost)" v-bind:class="'mana mana-' + manaSymbol">{{ manaSymbol }}</span>
@@ -804,7 +812,7 @@
                     </tr>
 
                     <tr>
-                        <td  class="deck-card-header">
+                        <td  class="deck-card-header" colspan="3">
                             Land ({{ landQty }})
                         </td>
                     </tr>
@@ -813,7 +821,7 @@
                             {{ card.quantity }}
                         </td>
                         <td class="deck-col-card">
-                            <a href="">{{ card.card.name }}</a>
+                            <a v-on:mouseover="cardImageShow = !cardImageShow; tempCardImage = card.card.image_url" v-on:mouseleave="cardImageShow = !cardImageShow" href="">{{ card.card.name }}</a>
                         </td>
                         <td class="deck-col-mana">
                             <span v-for="manaSymbol in convertManaStringToArray(card.card.mana_cost)" v-bind:class="'mana mana-' + manaSymbol">{{ manaSymbol }}</span>
@@ -821,6 +829,9 @@
                     </tr>
                 </tbody>
             </table>
+
+            </div>
+
 
             <hr>
 
