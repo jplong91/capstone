@@ -50,4 +50,19 @@ class V1::CardsController < ApplicationController
     render json: card_price
   end
 
+  def ocr
+    params = {
+            "language" => "unk",
+            "detectOrientation " => "true"
+        }
+    response = Unirest.get(
+      "https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/ocr",
+      headers: {
+        "Content-Type" => "application/json",
+        "Ocp-Apim-Subscription-Key" => ENV['AZURE_API_KEY']
+      }
+    ).body
+    render response
+  end
+
 end

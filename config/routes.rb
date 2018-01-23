@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     get "/cards/acquire/info" => "cards#acquire_card_info"
     get "/cards/acquire/price" => "cards#acquire_card_price"
 
+    get "/cards/ocr" => "cards#ocr"
+
     get "/teams" => "teams#index"
     post "/teams" => "teams#create"
   end

@@ -214,7 +214,7 @@
 <script src="assets/lib/jquery.mb.YTPlayer/dist/jquery.mb.YTPlayer.min.js"></script>
 <script src="assets/lib/magnific-popup/dist/jquery.magnific-popup.js"></script>
 
-<script src="assets/js/main2.js"></script>
+<script src="assets/js/main.js"></script>
 <script src="index.js" defer></script>
 
 <!-- Dropzone -->
@@ -689,8 +689,8 @@
                         <div class="main_content">
                             <div class="isotop-filter" id="filters">
                                 <button type="button" class="btn btn-isotop is-checked" data-filter="*">All</button>
-                                <button type="button" class="btn btn-isotop" data-filter=".Standard">Standard</button>
-                                <button type="button" class="btn btn-isotop" data-filter=".Modern">Modern</button>
+                                <button type="button" class="btn btn-isotop" data-filter=".standard">Standard</button>
+                                <button type="button" class="btn btn-isotop" data-filter=".modern">Modern</button>
                                 <button type="button" class="btn btn-isotop" data-filter=".marketing">Legacy</button>
                                 <button type="button" class="btn btn-isotop" data-filter=".brandidentity">Limited</button>
                             </div>
@@ -725,14 +725,16 @@
                                 </div>
                             </a>
                         </li>
-                        <li v-for="deck in decks" v-bind:data-category="deck.format" class="deck-page-indiv">
+                        <li v-for="deck in decks" v-bind:data-category="deck.format.toLowerCase()" v-bind:class="deck.format.toLowerCase()">
                             <a v-bind:href="'/#/decks/' + deck.id">
                                 <img v-bind:src="deck.displayImage" class="decks-page-indiv-img"/>
                                 <div class="portfolio-detail-overlay">
                                     <div class="middle-align-wrap">
                                         <div class="middle-align-cell">
                                             <h4>{{ deck.name }}</h4>
-                                            <span>{{ deck.description }}</span>
+                                            <span>{{ deck.format }}</span>
+                                            <hr>
+                                            <span>{{ deck.description.substr(0, 60) }}...</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1038,18 +1040,34 @@
     <section id="contact" class="section contact">
         <div class="container">
             <!---->
+            <button class="btn btn-dark contact-submit" v-on:click="ocrSearch = false; inputCardName = ''"><i class="ion-search"></i> Card Name Search</button>
+
+            <button class="btn btn-dark contact-submit" v-on:click="ocrSearch = true; cardImageURL=''"><i class="ion-image"></i> Image Search</button>
+
+            <hr>
 
             <div class="section-content">
                 <div class="row">
                     <div class="col-md-6 col-sm-5">
-                        <h5>Enter the name of the card</h5>
+                        <div class="input-form" v-if="ocrSearch !== true">
+                        <h5>Enter the name of the card below</h5>
                         
-                            <h5 v-if="cardPrice !== 0">{{ cardPrice }}</h5>
                             <div class="form-group">
                                 <input class="form-control" id="name" name="name" placeholder="Island" type="text" v-model="inputCardName" required>
                             </div>
 
                             <button id="cfsubmit" type="submit" class="btn btn-dark btn-block contact-submit" v-on:click="search()"><i class="ion-search"></i> Search</button>
+                        </div>
+
+                        <div class="input-form" v-if="ocrSearch === true">
+                        <h5>Paste the card image URL below</h5>
+                        
+                            <div class="form-group">
+                                <input class="form-control" id="name" name="name" placeholder="Image Link" type="text" v-model="cardImageURL" required>
+                            </div>
+
+                            <button id="cfsubmit" type="submit" class="btn btn-dark btn-block contact-submit" v-on:click="processImage()"><i class="ion-image"></i> Search</button>
+                        </div>
 
                             <hr>
 
@@ -1064,12 +1082,13 @@
                         
                     </div>
                     <div class="col-md-6 col-sm-7">
-                        <h5>Card</h5>
-                        <div class="google-map">
-                            <div id="map">
+                        <h5 id="card-image-title">Card</h5>
+                        <div class="card-image-container">
+                            <div id="card-image">
                                 <img v-bind:src="cardImage" alt="">
                             </div>
                         </div>
+                        <h4 id="card-price" v-if="cardPrice !== 0">{{ cardPrice }}</h4>
                     </div>
                 </div>
             </div>
@@ -1175,7 +1194,9 @@
             <h3>Match Generator</h3>
             <hr>
             <h4>Name</h4>
-            <input class="form-control" type="text" v-model="person">
+            <div class="form-group">
+                <input class="form-control" type="text" v-model="person">
+            </div>
             <div>
                 <button class="btn btn-dark" v-on:click="addPersonToPeople()"><i class="ion-person"></i> Add Person</button>
                 <button class="btn btn-dark" type="button" v-on:click="createPairings()"><i class="ion-android-people"></i> Create Pairings</button>

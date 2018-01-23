@@ -1584,7 +1584,7 @@ blockquote p {
   position: absolute;
   background: #fff;
   background: rgba(0, 0, 0, 0.9);
-  padding: 20px;
+  padding: 15px;
   text-align: center;
   width: 100%;
   height: 100%;
@@ -1602,7 +1602,7 @@ blockquote p {
 .portfolio-detail-overlay h4 {
   color: #fff;
   margin-top: 0px;
-  font-size: 14px;
+  font-size: 20px;
   margin-bottom: 15px;
   letter-spacing: 2px;
   font-family: "Rototo" sans-serif;
@@ -2002,6 +2002,15 @@ blockquote p {
   letter-spacing: 1px;
   text-transform: none;
 }
+#card-image-title {
+  margin-bottom: 30px;
+  margin-left: 30px;
+  letter-spacing: 1px;
+  text-transform: none;
+}
+#card-price {
+  margin-left: 30px;
+}
 .contact .section-content .contact-form {
   margin-bottom: 30px;
 }
@@ -2028,13 +2037,15 @@ blockquote p {
 .contact .section-content .contact-form textarea {
   min-height: 160px;
 }
-.contact .section-content #map {
-  height: 206px;
+.contact .section-content #card-image {
+  height: 311px;
+  width: 223px;
 }
-.contact .section-content .google-map {
+.contact .section-content .card-image-container {
   margin-bottom: 30px;
+  margin-left: 30px;
 }
-.contact .section-content .google-map iframe {
+.contact .section-content .card-image-container iframe {
   width: 100%;
 }
 .contact .section-content .contact-info-wrap h5 {
