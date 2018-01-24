@@ -55,6 +55,8 @@
     <script src="assets/lib/components-modernizr/modernizr.js"></script>
     <script src="assets/lib/jquery/dist/jquery.js"></script>
     <script src="assets/lib/bootstrap/dist/js/bootstrap.js"></script>
+<!-- Webcam -->
+    <script src="/assets/js/webcam.min.js"></script>
 
 <!-- Coverflow -->
     <link rel="stylesheet" type="text/css" href="assets/css/coverflow.css" />
@@ -64,6 +66,8 @@
 
 <!-- Dropzone -->
     <link rel="stylesheet" type="text/css" href="assets/css/dropzone.css" />
+
+
 
 </head>
 
@@ -769,7 +773,6 @@
 
                 <div class="image-container">
                     <img class="hover-card-img" v-show="cardImageShow" v-bind:src="tempCardImage" alt="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=439602&type=card">
-                    
                 </div>
 
 
@@ -1057,10 +1060,10 @@
 
             <hr>
 
-            <div class="section-content">
+            <div class="section-content" v-if="ocrSearch !== true">
                 <div class="row">
                     <div class="col-md-6 col-sm-5">
-                        <div class="input-form" v-if="ocrSearch !== true">
+                        <div class="input-form">
                         <h5>Enter the name of the card below</h5>
                         
                             <div class="form-group">
@@ -1068,16 +1071,6 @@
                             </div>
 
                             <button id="cfsubmit" type="submit" class="btn btn-dark btn-block contact-submit" v-on:click="search()"><i class="ion-search"></i> Search</button>
-                        </div>
-
-                        <div class="input-form" v-if="ocrSearch === true">
-                        <h5>Paste the card image URL below</h5>
-                        
-                            <div class="form-group">
-                                <input class="form-control" id="name" name="name" placeholder="Image Link" type="text" v-model="cardImageURL" required>
-                            </div>
-
-                            <button id="cfsubmit" type="submit" class="btn btn-dark btn-block contact-submit" v-on:click="processImage()"><i class="ion-image"></i> Search</button>
                         </div>
 
                             <hr>
@@ -1093,6 +1086,48 @@
                         
                     </div>
                     <div class="col-md-6 col-sm-7">
+                        <h5 id="card-image-title">Card</h5>
+                        <div class="card-image-container">
+                            <div id="card-image">
+                                <img v-bind:src="cardImage" alt="">
+                            </div>
+                        </div>
+                        <h4 id="card-price" v-if="cardPrice !== 0">{{ cardPrice }}</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-content" v-if="ocrSearch === true">
+                <div class="row">
+                    <div class="col-md-6 col-sm-7">
+
+                        <button class="btn btn-dark contact-submit" v-on:click="turnOnCamera()"><i class="ion-image"></i> Camera</button>
+
+                        <div class="input-form" v-if="ocrSearch === true">
+
+                        <hr>
+                        
+                        <div id="my_camera" style="width:100%; height:250px; margin: auto;"></div>
+                        <div id="my_result"></div>
+
+                        <hr>
+
+                            <button id="cfsubmit" type="submit" class="btn btn-dark btn-block contact-submit" v-on:click="take_snapshot()"><i class="ion-image"></i> Capture Image</button>
+                        </div>
+
+                            <hr>
+
+                            <h4>{{ cardName }}</h4>
+                            <p>{{ cardText }}</p>
+                            <p>{{ cardFlavor }}</p>
+
+                            <hr>
+                            <p>{{ cardSetName }}</p>
+                            <p>Artist: {{ cardArtist }}</p>
+
+                        
+                    </div>
+                    <div class="col-md-6 col-sm-5">
                         <h5 id="card-image-title">Card</h5>
                         <div class="card-image-container">
                             <div id="card-image">

@@ -390,7 +390,8 @@ var CardSearch = {
       cardPrice: 0,
 
       ocrSearch: false,
-      cardImageURL: ""
+      cardImageURL: "",
+      cameraOn: false
     };
   },
   mounted: function() {},
@@ -429,7 +430,39 @@ var CardSearch = {
         );
     },
 
-    processImage: function() {
+    turnOnCamera: function() {
+      this.cameraOn = !this.cameraOn;
+      if (this.cameraOn) {
+        Webcam.attach("#my_camera");
+      } else {
+        Webcam.reset();
+      }
+    },
+
+    makeblob: function(dataURL) {
+      var BASE64_MARKER = ";base64,";
+      if (dataURL.indexOf(BASE64_MARKER) == -1) {
+        var parts = dataURL.split(",");
+        var contentType = parts[0].split(":")[1];
+        var raw = decodeURIComponent(parts[1]);
+        return new Blob([raw], { type: contentType });
+      }
+      var parts = dataURL.split(BASE64_MARKER);
+      var contentType = parts[0].split(":")[1];
+      var raw = window.atob(parts[1]);
+      var rawLength = raw.length;
+
+      var uInt8Array = new Uint8Array(rawLength);
+
+      for (var i = 0; i < rawLength; ++i) {
+        uInt8Array[i] = raw.charCodeAt(i);
+      }
+
+      return new Blob([uInt8Array], { type: contentType });
+    },
+
+    processImage: function(data_uri) {
+      console.log("processImage!!!");
       // **********************************************
       // *** Update or verify the following values. ***
       // **********************************************
@@ -454,7 +487,8 @@ var CardSearch = {
       };
 
       // Display the image.
-      var sourceImageUrl = this.cardImageURL;
+      // var sourceImageUrl = document.getElementById("inputImage").value;
+      // document.querySelector("#sourceImage").src = sourceImageUrl;
 
       // Perform the REST API call.
       $.ajax({
@@ -462,26 +496,38 @@ var CardSearch = {
 
         // Request headers.
         beforeSend: function(jqXHR) {
-          jqXHR.setRequestHeader("Content-Type", "application/json");
+          jqXHR.setRequestHeader("Content-Type", "application/octet-stream");
           jqXHR.setRequestHeader("Ocp-Apim-Subscription-Key", subscriptionKey);
         },
 
         type: "POST",
 
         // Request body.
-        data: '{"url": ' + '"' + sourceImageUrl + '"}'
+        // data: '{"url": ' + '"' + sourceImageUrl + '"}',
+        data: this.makeblob(data_uri),
+        processData: false
       })
 
         .done(
           function(data) {
-            this.inputCardName =
-              data["regions"][0]["lines"][0]["words"][0]["text"];
+            console.log("DONE", data, JSON.stringify(data, null, 2));
+            let words = data["regions"][0]["lines"][0]["words"];
+            this.inputCardName = "";
+            words.forEach(
+              function(hash) {
+                this.inputCardName += hash["text"] + " ";
+                console.log(this.inputCardName);
+              }.bind(this)
+            );
+            // this.inputCardName =
+            //   data["regions"][0]["lines"][0]["words"][0]["text"];
             // console.log(this.inputCardName);
             this.search();
           }.bind(this)
         )
 
         .fail(function(jqXHR, textStatus, errorThrown) {
+          console.log("FAIL", errorThrown);
           // Display error message.
           var errorString =
             errorThrown === ""
@@ -495,7 +541,85 @@ var CardSearch = {
                 : jQuery.parseJSON(jqXHR.responseText).error.message;
           alert(errorString);
         });
+    },
+
+    take_snapshot: function() {
+      Webcam.snap(
+        function(data_uri) {
+          // document.getElementById('my_result').innerHTML = '<img src="'+data_uri+'"/>';
+          this.processImage(data_uri);
+        }.bind(this)
+      );
     }
+
+    // processImage: function() {
+    //   // **********************************************
+    //   // *** Update or verify the following values. ***
+    //   // **********************************************
+
+    //   // Replace the subscriptionKey string value with your valid subscription key.
+    //   var subscriptionKey = "f1d025442686486cbeb462c282f3b978";
+
+    //   // Replace or verify the region.
+    //   //
+    //   // You must use the same region in your REST API call as you used to obtain your subscription keys.
+    //   // For example, if you obtained your subscription keys from the westus region, replace
+    //   // "westcentralus" in the URI below with "westus".
+    //   //
+    //   // NOTE: Free trial subscription keys are generated in the westcentralus region, so if you are using
+    //   // a free trial subscription key, you should not need to change this region.
+    //   var uriBase =
+    //     "https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/ocr";
+
+    //   // Request parameters.
+    //   var params = {
+    //     language: "unk",
+    //     "detectOrientation ": "true"
+    //   };
+
+    //   // Display the image.
+    //   var sourceImageUrl = this.cardImageURL;
+
+    //   // Perform the REST API call.
+    //   $.ajax({
+    //     url: uriBase + "?" + $.param(params),
+
+    //     // Request headers.
+    //     beforeSend: function(jqXHR) {
+    //       jqXHR.setRequestHeader("Content-Type", "application/json");
+    //       jqXHR.setRequestHeader("Ocp-Apim-Subscription-Key", subscriptionKey);
+    //     },
+
+    //     type: "POST",
+
+    //     // Request body.
+    //     data: '{"url": ' + '"' + sourceImageUrl + '"}'
+    //   })
+
+    //     .done(
+    //       function(data) {
+    //         this.inputCardName =
+    //           data["regions"][0]["lines"][0]["words"][0]["text"];
+    //         // console.log(this.inputCardName);
+    //         this.search();
+    //       }.bind(this)
+    //     )
+
+    //     .fail(function(jqXHR, textStatus, errorThrown) {
+    //       // Display error message.
+    //       var errorString =
+    //         errorThrown === ""
+    //           ? "Error. "
+    //           : errorThrown + " (" + jqXHR.status + "): ";
+    //       errorString +=
+    //         jqXHR.responseText === ""
+    //           ? ""
+    //           : jQuery.parseJSON(jqXHR.responseText).message
+    //             ? jQuery.parseJSON(jqXHR.responseText).message
+    //             : jQuery.parseJSON(jqXHR.responseText).error.message;
+    //       alert(errorString);
+    //     });
+    // }
   },
   computed: {}
 };

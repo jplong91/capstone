@@ -3,19 +3,15 @@
 <head>
     <title>OCR Sample</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script src="assets/js/webcam.min.js"></script>
+    <script src="/assets/js/webcam.min.js"></script>
 </head>
 <body>
-
-
 <h1>Webcam</h1>
-
 <div id="my_camera" style="width:320px; height:240px;"></div>
 <div id="my_result"></div>
 <a href="javascript:void(take_snapshot())">Take Snapshot</a>
 
 <h1>Optical Character Recognition (OCR):</h1>
-
 Enter the URL to an image of printed text, then click the <strong>Read image</strong> button.
 <br><br>
 Image to read: <input type="text" name="inputImage" id="inputImage" value="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Atomist_quote_from_Democritus.png/338px-Atomist_quote_from_Democritus.png" />
@@ -37,31 +33,17 @@ Image to read: <input type="text" name="inputImage" id="inputImage" value="https
 
 
 <script type="text/javascript">
-    // var imageData = null;
-
+    
     Webcam.attach( '#my_camera' );
     
     function take_snapshot() {
         Webcam.snap( function(data_uri) {
-            console.log('here is the image', data_uri.split("data:image/jpeg;base64,")[1] );
-            document.getElementById('my_result').innerHTML = '<img src="'+data_uri+'"/>';
-            // imageData = data_uri;
-            // processImage(data_uri.split("data:image/jpeg;base64,")[1]);
-            processImage(dataURItoBlob(data_uri));
+            // document.getElementById('my_result').innerHTML = '<img src="'+data_uri+'"/>';
+            processImage(data_uri);
         } );
     }
 
-    function dataURItoBlob(dataURI) {
-        var binary = atob(dataURI.split(',')[1]);
-        var array = [];
-        for(var i = 0; i < binary.length; i++) {
-            array.push(binary.charCodeAt(i));
-        }
-        return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
-    }
-
-    
-    function processImage(rawData) {
+    function processImage(data_uri) {
         // **********************************************
         // *** Update or verify the following values. ***
         // **********************************************
@@ -86,13 +68,8 @@ Image to read: <input type="text" name="inputImage" id="inputImage" value="https
         };
 
         // Display the image.
-        var sourceImageUrl = document.getElementById("inputImage").value;
-        document.querySelector("#sourceImage").src = sourceImageUrl;
-
-        console.log('raw data is', rawData);
-
-        var fd = new FormData();
-        fd.append("data", rawData);
+        // var sourceImageUrl = document.getElementById("inputImage").value;
+        // document.querySelector("#sourceImage").src = sourceImageUrl;
 
         // Perform the REST API call.
         $.ajax({
@@ -100,9 +77,7 @@ Image to read: <input type="text" name="inputImage" id="inputImage" value="https
 
             // Request headers.
             beforeSend: function(jqXHR){
-                // jqXHR.setRequestHeader("Content-Type", "application/json");
-                // jqXHR.setRequestHeader("Content-Type", "application/octet-stream");
-                jqXHR.setRequestHeader("Content-Type", "multipart/form-data");
+                jqXHR.setRequestHeader("Content-Type","application/octet-stream");
                 jqXHR.setRequestHeader("Ocp-Apim-Subscription-Key", subscriptionKey);
             },
 
@@ -110,7 +85,8 @@ Image to read: <input type="text" name="inputImage" id="inputImage" value="https
 
             // Request body.
             // data: '{"url": ' + '"' + sourceImageUrl + '"}',
-            data: fd,
+            data: makeblob(data_uri),
+            processData: false
         })
 
         .done(function(data) {
@@ -126,8 +102,29 @@ Image to read: <input type="text" name="inputImage" id="inputImage" value="https
             alert(errorString);
         });
     };
-</script>
 
+    function makeblob(dataURL) {
+        var BASE64_MARKER = ';base64,';
+        if (dataURL.indexOf(BASE64_MARKER) == -1) {
+            var parts = dataURL.split(',');
+            var contentType = parts[0].split(':')[1];
+            var raw = decodeURIComponent(parts[1]);
+            return new Blob([raw], { type: contentType });
+        }
+        var parts = dataURL.split(BASE64_MARKER);
+        var contentType = parts[0].split(':')[1];
+        var raw = window.atob(parts[1]);
+        var rawLength = raw.length;
+
+        var uInt8Array = new Uint8Array(rawLength);
+
+        for (var i = 0; i < rawLength; ++i) {
+            uInt8Array[i] = raw.charCodeAt(i);
+        }
+
+        return new Blob([uInt8Array], { type: contentType });
+    }
+</script>
 
 </body>
 </html>
