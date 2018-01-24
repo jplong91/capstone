@@ -772,7 +772,9 @@
             <div class="container">
 
                 <div class="image-container">
-                    <img class="hover-card-img" v-show="cardImageShow" v-bind:src="tempCardImage" alt="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=439602&type=card">
+                    <transition name="fade">
+                        <img class="hover-card-img" v-show="cardImageShow" v-bind:src="tempCardImage" alt="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=439602&type=card">
+                    </transition>
                 </div>
 
 
@@ -1070,7 +1072,7 @@
                                 <input class="form-control" id="name" name="name" placeholder="Island" type="text" v-model="inputCardName" required>
                             </div>
 
-                            <button id="cfsubmit" type="submit" class="btn btn-dark btn-block contact-submit" v-on:click="search()"><i class="ion-search"></i> Search</button>
+                            <button id="cfsubmit" type="submit" class="btn btn-dark btn-block contact-submit" v-on:click="cardPrice = 0; search()"><i class="ion-search"></i> Search</button>
                         </div>
 
                             <hr>
@@ -1089,10 +1091,14 @@
                         <h5 id="card-image-title">Card</h5>
                         <div class="card-image-container">
                             <div id="card-image">
-                                <img v-bind:src="cardImage" alt="">
+                                <transition name="fadeRight">
+                                    <img v-show="cardImage" v-bind:src="cardImage" alt="">
+                                </transition>
                             </div>
                         </div>
-                        <h4 id="card-price" v-if="cardPrice !== 0">{{ cardPrice }}</h4>
+                        <transition name="bounce">
+                            <h4 id="card-price" v-if="cardPrice !== 0">{{ cardPrice }}</h4>
+                        </transition>
                     </div>
                 </div>
             </div>
@@ -1131,10 +1137,14 @@
                         <h5 id="card-image-title">Card</h5>
                         <div class="card-image-container">
                             <div id="card-image">
-                                <img v-bind:src="cardImage" alt="">
+                                <transition name="fadeRight">
+                                    <img v-show="cardImage" v-bind:src="cardImage" alt="">
+                                </transition>
                             </div>
                         </div>
-                        <h4 id="card-price" v-if="cardPrice !== 0">{{ cardPrice }}</h4>
+                        <transition name="fade">
+                            <h4 id="card-price" v-if="cardPrice !== 0">{{ cardPrice }}</h4>
+                        </transition>
                     </div>
                 </div>
             </div>
