@@ -391,7 +391,8 @@ var CardSearch = {
 
       ocrSearch: false,
       cardImageURL: "",
-      cameraOn: false
+      cameraOn: false,
+      cameraButtonText: "Activate Camera"
     };
   },
   mounted: function() {},
@@ -434,8 +435,10 @@ var CardSearch = {
       this.cameraOn = !this.cameraOn;
       if (this.cameraOn) {
         Webcam.attach("#my_camera");
+        this.cameraButtonText = "Deactivate Camera";
       } else {
         Webcam.reset();
+        this.cameraButtonText = "Activate Camera";
       }
     },
 
@@ -772,5 +775,12 @@ var router = new VueRouter({
 
 var app = new Vue({
   el: "#app",
-  router: router
+  router: router,
+  watch: {
+    $route: function(to, from) {
+      // if (to.path === "/decks") {
+      //   window.location.reload();
+      // }
+    }
+  }
 });

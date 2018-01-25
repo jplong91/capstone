@@ -1531,7 +1531,7 @@ blockquote p {
 
 .da-thumbs li {
   float: left;
-  background: #fff;
+  /*background: #fff;*/
   padding: 0px;
   position: relative;
   width: 25%;
@@ -1575,6 +1575,11 @@ blockquote p {
   position: relative;
   width: 100%;
 }
+
+/*.decks-page-indiv-img {
+  position: absolute;
+  clip: rect(40px, 200px, 170px, 20px);
+}*/
 
 .da-thumbs li a {
   overflow: hidden;
