@@ -1,24 +1,24 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Brief Summary:
+This capstone represents the culmination of my learned skills at Actualize. The MTG in the title stands for: Magic the Gathering. The web application is aimed at fellow Magic players as a place to look up new or old cards, build decks, and then share those decks with others. The application leverages a Rails backend framework, PostgreSQL database with several models and joint tables, a VueJS based frontend as well as a handful of APIs, including MTG for Developers, ChannelFireball pricing, and Microsoft’s OCR on the Azure platform.
 
-Things you may want to cover:
+This app runs on Rails v5.1.4
 
-* Ruby version
+To install app on your computer
 
-* System dependencies
+* clone repo
+* rails db:create
+* rails db:migrate
+* rails db:seed
+* rails s
+* go to localhost:3000 in browser
+  You're good to go!
 
-* Configuration
+The OCR on the card search page will not work until I move the Azure API request to the backend, as such the API key has been removed from the applicable location.
 
-* Database creation
+Currently the only 'working' pages exist as the homepage, card search page, and decks + view decks pages. The create deck page does work although the formating isn't pretty.
 
-* Database initialization
+v2 I would like to continue to build the teams page and tools page, as well as continue to improve the decks pages.
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Look forward to demo video and heroku deployment in near future.
