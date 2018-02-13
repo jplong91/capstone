@@ -1,5 +1,7 @@
 # README
 
+DEMO VIDEO: https://youtu.be/3bFA-RIt7i0
+
 Brief Summary:
 This capstone represents the culmination of my learned skills at Actualize. The MTG in the title stands for: Magic the Gathering. The web application is aimed at fellow Magic players as a place to look up new or old cards, build decks, and then share those decks with others. The application leverages a Rails backend framework, PostgreSQL database with several models and joint tables, a VueJS based frontend as well as a handful of APIs, including MTG for Developers, ChannelFireball pricing, and Microsoft’s OCR on the Azure platform.
 

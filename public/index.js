@@ -419,6 +419,7 @@ var CardSearch = {
               .get("/v1/cards/acquire/price?cfb_search=" + params["cfb_search"])
               .then(
                 function(response) {
+                  console.log(response.data);
                   this.cardPrice = response.data[0];
                 }.bind(this)
               );

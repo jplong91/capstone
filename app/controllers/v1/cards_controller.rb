@@ -45,7 +45,7 @@ class V1::CardsController < ApplicationController
   end
 
   def acquire_card_price
-    response = Unirest.get("http://magictcgprices.appspot.com/api/cfb/price.json?cardname=" + params[:cfb_search])
+    response = Unirest.get("http://magictcgprices.appspot.com/api/tcgplayer/price.json?cardname=" + params[:cfb_search])
     card_price = response.body
     render json: card_price
   end
